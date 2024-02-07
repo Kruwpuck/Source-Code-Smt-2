@@ -3,20 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	var bilbul int
-	var kelipatan bool
-	stop := false
-	fmt.Scan(&bilbul)
-	for !stop {
-		bilbul = bilbul - 15
-		if bilbul == 0 {
-			kelipatan = true
-		}
-		if bilbul <= 0 {
-			stop = true
-		}
+	var X, bilbuldigit4, hasiljumlah1, hasiljumlah2 int
+	fmt.Scan(&X, &bilbuldigit4)
+	hasiljumlah1 = (bilbuldigit4 / 1000) + (bilbuldigit4 % 10)
+	hasiljumlah2 = hasiljumlah2 + ((bilbuldigit4 / 100) % 10) + ((bilbuldigit4 / 10) % 10)
+	for X != hasiljumlah1 {
+		fmt.Scan(&bilbuldigit4)
+		hasiljumlah1 = (bilbuldigit4 / 1000) + (bilbuldigit4 % 10)
+		hasiljumlah2 = hasiljumlah2 + ((bilbuldigit4 / 100) % 10) + ((bilbuldigit4 / 10) % 10)
 	}
-
-	fmt.Println(kelipatan)
-
+	fmt.Println(hasiljumlah2)
 }
