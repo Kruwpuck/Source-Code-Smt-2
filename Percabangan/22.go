@@ -3,10 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	var bilangan int
-	var hasil bool
+	var input string
+	fmt.Scan(&input)
+	hasil := string(input[0]) + string(input[4]) + string(input[8]) + string(input[12])
 
-	fmt.Scan(&bilangan)
-	hasil = bilangan%2 == 0
-	fmt.Print(hasil)
+	if len(input) >= 20 {
+		fmt.Println(hasil)
+	}
 }

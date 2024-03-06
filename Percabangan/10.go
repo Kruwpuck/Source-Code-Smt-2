@@ -5,14 +5,9 @@ import "fmt"
 func main() {
 	var a, b string
 	fmt.Scan(&a, &b)
-	if a == "tidak" {
+	if a == "ya" && b == "ya" || a == "tidak" {
 		fmt.Println("berangkat")
 	} else {
-		fmt.Scan(&b)
-		if b == "ya" {
-			fmt.Println("berankat")
-		} else {
-			fmt.Println("diam di rumah")
-		}
+		fmt.Println("diam di rumah")
 	}
 }

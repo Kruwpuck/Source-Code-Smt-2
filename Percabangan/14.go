@@ -3,7 +3,21 @@ package main
 import "fmt"
 
 func main() {
-	var gram float64
-	fmt.Scan(&gram)
-	fmt.Println(gram * 5.0)
+	var suwir, cakue, ati, porsi bool
+	var harga int
+	fmt.Scan(&suwir, &cakue, &ati, &porsi)
+	harga = 6000
+	if suwir {
+		harga += 3000
+	}
+	if cakue {
+		harga += 1500
+	}
+	if ati {
+		harga += 4500
+	}
+	if porsi {
+		harga += 4000
+	}
+	fmt.Println(harga)
 }

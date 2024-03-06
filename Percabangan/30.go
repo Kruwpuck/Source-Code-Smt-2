@@ -3,10 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	var bil1, bil2 int
-	var hasil bool
-
-	fmt.Scan(&bil1, &bil2)
-	hasil = bil1%bil2 == 0
-	fmt.Println(hasil)
+	var input, hasil string
+	for i := 0; i < 6; i++ {
+		fmt.Scan(&input)
+		hasil += string(input[0])
+	}
+	if hasil == "serang" {
+		fmt.Println(hasil)
+	} else {
+		fmt.Println("tidak serang")
+	}
 }

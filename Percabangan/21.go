@@ -3,7 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	var r, t float64
-	fmt.Scan(&r, &t)
-	fmt.Print(1.0 / 3.0 * 3.14 * r * r * t)
+	var a, b bool
+	fmt.Scan(&a, &b)
+	if a && b {
+		fmt.Println("keluar jalan-jalan")
+	} else {
+		fmt.Println("diam di rumah saja")
+	}
 }

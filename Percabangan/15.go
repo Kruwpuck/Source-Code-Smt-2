@@ -3,7 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	var mil float64
-	fmt.Scan(&mil)
-	fmt.Println(mil * 0.00062137119)
+	var minum, makan, bayar int
+	var tips bool
+	fmt.Scan(&makan, &minum, &tips)
+	bayar += makan + minum
+	if tips {
+		bayar += 5000
+	}
+	fmt.Println(bayar)
 }

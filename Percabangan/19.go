@@ -3,7 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	var x float64
-	fmt.Scan(&x)
-	fmt.Println((x*x*x + 3*x) / (x*x*x*x - 3*(x*x) + 4))
+	var turki, mongol int
+	fmt.Scan(&turki, &mongol)
+	if turki*3 >= mongol {
+		fmt.Println("turki menang")
+	} else {
+		fmt.Println("mongol menang")
+	}
 }
