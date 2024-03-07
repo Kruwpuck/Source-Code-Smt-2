@@ -4,6 +4,13 @@ import "fmt"
 
 func main() {
 	var a, b, c int
-	fmt.Scan(&a, &b, &c)
-	fmt.Println((a + 1) * (2*b + 2) * (3*c + 3))
+	for i := 0; i < 4; i++ {
+		fmt.Scan(&a)
+		if a%2 == 0 {
+			b++
+		} else {
+			c++
+		}
+	}
+	fmt.Print(b, c)
 }

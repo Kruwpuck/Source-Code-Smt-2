@@ -3,9 +3,19 @@ package main
 import "fmt"
 
 func main() {
-	var d1, d2, d3 int
-	var hasil bool
-	fmt.Scan(&d1, &d2, &d3)
-	hasil = d1%2 != 0 && d2%2 != 0 && d3%2 != 0
-	fmt.Println(hasil)
+	var a, b string
+	fmt.Scan(&a, &b)
+	if a == "A" && (b == "B") {
+		fmt.Println(true)
+	} else if a == "E" && b == "C" {
+		fmt.Println(true)
+	} else if a == "B" && (b == "A" || b == "C" || b == "D") {
+		fmt.Println(true)
+	} else if a == "C" && (b == "E" || b == "B") {
+		fmt.Println(true)
+	} else if a == "D" && (b == "B") {
+		fmt.Println(true)
+	} else {
+		fmt.Println(false)
+	}
 }

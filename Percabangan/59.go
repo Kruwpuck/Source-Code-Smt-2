@@ -3,10 +3,21 @@ package main
 import "fmt"
 
 func main() {
-	var bil, d1, d2, d3 int
-	fmt.Scan(&bil)
-	d1 = bil / 100
-	d2 = bil / 10 % 10
-	d3 = bil % 10
-	fmt.Println(d3*100 + d2*10 + d1)
+	var a, b, c int
+	fmt.Scan(&a, &b, &c)
+	if a <= b && b <= c {
+		fmt.Print(a, b, c)
+	} else if b <= a && a <= c {
+		fmt.Print(b, a, c)
+	} else if a <= c && c <= b {
+		fmt.Print(a, c, b)
+	} else if b <= c && c <= a {
+		fmt.Print(b, c, a)
+	} else if c <= a && a <= b {
+		fmt.Print(c, a, b)
+	} else if c <= b && b <= a {
+		fmt.Print(c, b, a)
+	} else {
+		fmt.Print()
+	}
 }

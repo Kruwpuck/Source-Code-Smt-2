@@ -3,11 +3,22 @@ package main
 import "fmt"
 
 func main() {
-	var w, x, y, z int
-	fmt.Scan(&x, &y, &z)
-	w = y
-	y = x
-	x = z
-	z = w
-	fmt.Println(x, y, z)
+	var a int
+	fmt.Scan(&a)
+	if a == 1 {
+		fmt.Print("minggu")
+	} else if a == 2 {
+		fmt.Print("senin")
+	} else if a == 3 {
+		fmt.Print("selasa")
+	} else if a == 4 {
+		fmt.Print("rabu")
+	} else if a == 5 {
+		fmt.Print("kamis")
+	} else if a == 6 {
+		fmt.Print("jumat")
+	} else if a == 7 {
+		fmt.Print("sabtu")
+	}
+
 }

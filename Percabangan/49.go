@@ -3,9 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	var adik, kakak int
-	var menang4 bool
-	fmt.Scan(&adik, &kakak)
-	menang4 = (adik-kakak)%2 == 0 || (kakak-adik)%2 == 0
-	fmt.Println(menang4)
+	var hasil string
+	fmt.Scan(&hasil)
+	if hasil == "a" || hasil == "i" || hasil == "u" || hasil == "e" || hasil == "o" || hasil == "A" || hasil == "I" || hasil == "U" || hasil == "E" || hasil == "O" {
+		fmt.Print("vokal")
+	} else {
+		fmt.Print("konsonan")
+	}
 }

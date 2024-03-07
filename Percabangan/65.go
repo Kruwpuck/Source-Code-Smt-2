@@ -3,9 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	var d1, d2, d3 int
-	var hasil bool
-	fmt.Scan(&d1, &d2, &d3)
-	hasil = d1%2 != 0 || d2%2 != 0 || d3%2 != 0
-	fmt.Println(hasil)
+	var a, c int
+	var b bool
+	fmt.Scan(&a, &b)
+	if a >= 500000 && b {
+		c = a * 20 / 100
+	}
+	fmt.Print(c)
 }

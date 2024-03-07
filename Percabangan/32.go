@@ -3,7 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	var sisi int
-	fmt.Scan(&sisi)
-	fmt.Print(sisi * sisi)
+	var m, c float64
+	fmt.Scan(&m, &c)
+	if m*c == 0 {
+		fmt.Println("melewati")
+	} else {
+		fmt.Print("tidak melewati")
+	}
 }

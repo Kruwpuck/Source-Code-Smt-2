@@ -3,7 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	var x, y int
-	fmt.Scan(&x, &y)
-	fmt.Print(x / y)
+	var i int
+	fmt.Scan(&i)
+	if i <= 5 {
+		fmt.Println("mendapat hadiah")
+	}
 }

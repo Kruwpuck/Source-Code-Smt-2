@@ -3,9 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	var huruf string
-	var hasil bool
-	fmt.Scan(&huruf)
-	hasil = huruf == "a" || huruf == "i" || huruf == "u" || huruf == "e" || huruf == "o"
-	fmt.Println(hasil)
+	var a, b int
+	fmt.Scan(&a, &b)
+	if a > b {
+		fmt.Print(b)
+	} else {
+		fmt.Print(a)
+	}
 }

@@ -3,7 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	var x, y int
-	fmt.Scan(&x, &y)
-	fmt.Print(x / y)
+	var x int
+	fmt.Scan(&x)
+	if x <= 5 {
+		fmt.Print(x * 1000)
+	} else if x > 5 && x <= 10 {
+		fmt.Print(x * 2000)
+	} else {
+		fmt.Print("cabut keanggotaan")
+	}
 }

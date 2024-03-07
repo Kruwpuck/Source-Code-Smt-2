@@ -3,10 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	var detik, jam, menit int
-	fmt.Scan(&detik)
-	jam = detik / 3600
-	menit = (detik % 3600) / 60
-	detik = (detik % 3600 % 60)
-	fmt.Println(jam, menit, detik)
+	var i string
+	fmt.Scan(&i)
+	if i == "B" || i == "E" {
+		fmt.Print("verteks dalam")
+	} else if i == "A" {
+		fmt.Print("akar")
+	} else {
+		fmt.Print("daun")
+	}
 }

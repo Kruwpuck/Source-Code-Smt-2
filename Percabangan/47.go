@@ -3,9 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	var adik, kakak int
-	var menang4 bool
-	fmt.Scan(&adik, &kakak)
-	menang4 = kakak*2 == adik || adik == kakak*3
-	fmt.Println(menang4)
+	var a, b, c int
+	fmt.Scan(&a, &b, &c)
+	if a > b && a > c {
+		fmt.Print(a)
+	} else if b > a && b > c {
+		fmt.Print(b)
+	} else {
+		fmt.Print(c)
+	}
 }
