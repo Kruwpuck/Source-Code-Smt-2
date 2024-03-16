@@ -3,18 +3,20 @@ package main
 import "fmt"
 
 func main() {
-	var a int
+	var a, b int
 	fmt.Scan(&a)
 
-	if a < 100 {
-		fmt.Print(a * 12)
-	} else if a < 200 {
-		fmt.Print(a*12*20/100 + a*12)
+	if a < 200 {
+		b = a * 12
 	} else if a >= 200 && a < 400 {
-		fmt.Print(a*15*20/100 + a*15)
+		b = a * 15
 	} else if a >= 400 && a < 600 {
-		fmt.Print((a * 18 * 20 / 100) + a*18)
-	} else if a > 600 {
-		fmt.Print((a * 20 * 20 / 100) + a*20)
+		b = a * 18
+	} else if a >= 600 {
+		b = a * 20
 	}
+	if b >= 400 {
+		b += b * 20 / 100
+	}
+	fmt.Println(b)
 }

@@ -3,19 +3,22 @@ package main
 import "fmt"
 
 func main() {
-	var a, b, c int
-	fmt.Scan(&a, &b, &c)
-	if a >= b && b >= c {
-		fmt.Print(b)
-	} else if b >= a && a >= c {
-		fmt.Print(a)
-	} else if a >= c && c >= b {
-		fmt.Print(c)
-	} else if b >= c && c >= a {
-		fmt.Print(c)
-	} else if c >= a && a >= b {
-		fmt.Print(a)
-	} else if c >= b && b >= a {
-		fmt.Print(b)
+	var numbers [10]int
+	var input, lastNumber, count int
+	fmt.Scan(&lastNumber)
+	numbers[0] = lastNumber
+	count = 1
+	for i := 1; i < 10; i++ {
+		fmt.Scan(&input)
+
+		if input > lastNumber {
+			break
+		}
+
+		numbers[i] = input
+		lastNumber = input
+		count++
 	}
+
+	fmt.Printf("%d\n", count)
 }
