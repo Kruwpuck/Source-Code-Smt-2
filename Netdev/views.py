@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 def home(request):
     html_var = 'f string'
-    html_= """"
+    html_= f""""
     <!DOCTYPE html>
     <html lang=en>
     <head>
