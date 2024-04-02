@@ -3,12 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	var minum, makan, bayar int
-	var tips bool
-	fmt.Scan(&makan, &minum, &tips)
-	bayar += makan + minum
-	if tips {
-		bayar += 5000
+	var n, m int
+	fmt.Scan(&n, &m)
+	for i := n; i <= m; i++ {
+		fmt.Print(i, " ")
 	}
-	fmt.Println(bayar)
 }

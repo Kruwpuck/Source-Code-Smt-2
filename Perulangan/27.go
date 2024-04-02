@@ -3,11 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	var n, m int
-	fmt.Scan(&n, &m)
-	if n%m == 0 {
-		fmt.Println("Ya,", n, "kelipatan", m)
-	} else {
-		fmt.Println("Tidak,", n, "bukan kelipatan", m)
+	var i, jml, n, x int
+	fmt.Scan(&x, &n)
+	for i = 1; i <= n; i++ {
+		jml += x + (2500 * (i - 1))
 	}
+	fmt.Println(jml)
 }

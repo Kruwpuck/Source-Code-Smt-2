@@ -3,9 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	var i int
-	fmt.Scan(&i)
-	if i <= 5 {
-		fmt.Println("mendapat hadiah")
+	var n, p int
+	fmt.Scan(&n)
+	for i := 0; i < n; i++ {
+		fmt.Scan(&p)
+		fmt.Println(p*p, 4*(p))
 	}
 }

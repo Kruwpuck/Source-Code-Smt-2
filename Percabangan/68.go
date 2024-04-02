@@ -5,7 +5,6 @@ import "fmt"
 func main() {
 	var a, b int
 	fmt.Scan(&a)
-
 	if a < 200 {
 		b = a * 12
 	} else if a >= 200 && a < 400 {
@@ -17,6 +16,9 @@ func main() {
 	}
 	if b >= 400 {
 		b += b * 20 / 100
+	}
+	if b < 100 {
+		b = 100
 	}
 	fmt.Println(b)
 }

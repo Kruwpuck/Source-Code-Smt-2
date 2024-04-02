@@ -3,11 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	var n, m, total int
-	fmt.Scan(&n)
-	for i := 0; i < n; i++ {
-		fmt.Scan(&m)
-		total += m
+	var n, m, mtot int
+	for true {
+		fmt.Scan(&n, &m)
+		if n != 0 && m != 0 {
+			mtot += n*60 + m
+		} else {
+			break
+		}
 	}
-	fmt.Println(total)
+	fmt.Print(mtot/60, mtot%60)
 }

@@ -1,16 +1,14 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
 func main() {
 	var a, b, c float64
-	fmt.Scan(&a, &b, &c)
-	if math.Pow(a, b) == c {
-		fmt.Println("benar")
-	} else {
-		fmt.Println("salah")
+	fmt.Scan(&a)
+	c = 1
+	for i := 0; i < int(a); i++ {
+		fmt.Scan(&b)
+		c *= b
 	}
+	fmt.Print(int(c))
 }

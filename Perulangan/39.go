@@ -3,18 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	var a, b int
-	for i := 0; i < 5; i++ {
+	var a, b, c int
+	for true {
 		fmt.Scan(&a)
-		if a%2 != 0 {
-			b++
+		b += a
+		c++
+		if b > 100 {
+			fmt.Print(b, c)
+			break
 		}
-	}
-	if b == 5 {
-		fmt.Print("ganjil semua")
-	} else if b > 0 {
-		fmt.Print("ganjil sebagian")
-	} else {
-		fmt.Print("tidak ada bilangan ganjil")
 	}
 }

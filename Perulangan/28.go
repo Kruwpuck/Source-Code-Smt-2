@@ -3,13 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	var a, b int
-	fmt.Scan(&a, &b)
-	if a > b {
-		fmt.Println("menang")
-	} else if a < b {
-		fmt.Println("kalah")
-	} else {
-		fmt.Println("draw")
+	var a, b, c, d, e int
+	fmt.Scan(&a)
+	for i := 0; i < a; i++ {
+		fmt.Scan(&b, &c)
+		d += b
+		e += c
 	}
+	fmt.Print(d, e)
 }

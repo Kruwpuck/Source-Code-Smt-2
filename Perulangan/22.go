@@ -3,11 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	var input string
-	fmt.Scan(&input)
-	hasil := string(input[0]) + string(input[4]) + string(input[8]) + string(input[12])
-
-	if len(input) >= 20 {
-		fmt.Println(hasil)
+	var n, m, jumlah float64
+	fmt.Scan(&n)
+	for i := 0; i < int(n); i++ {
+		fmt.Scan(&m)
+		jumlah += m
 	}
+	fmt.Println(jumlah)
+	fmt.Printf("%.2f", float64(jumlah/n))
 }

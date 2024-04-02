@@ -3,6 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	const lastName = "wick"
-	fmt.Print("nice to meet you ", lastName, "!\n")
+	var a, b int
+	fmt.Scan(&a, &b)
+	stop := false
+	for !stop {
+
+		fmt.Println(a)
+		a++
+		stop = a > b
+	}
+
 }

@@ -3,14 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	var input, hasil string
-	for i := 0; i < 6; i++ {
-		fmt.Scan(&input)
-		hasil += string(input[0])
+	var i, jum int
+	for true {
+		fmt.Scan(&i)
+		if i != 0 {
+			jum += i
+		} else {
+			break
+		}
 	}
-	if hasil == "serang" {
-		fmt.Println(hasil)
-	} else {
-		fmt.Println("tidak serang")
-	}
+	fmt.Print(jum)
 }

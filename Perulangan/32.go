@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	var m, c float64
-	fmt.Scan(&m, &c)
-	if m*c == 0 {
-		fmt.Println("melewati")
-	} else {
-		fmt.Print("tidak melewati")
+	var n, m, jum int
+	fmt.Scan(&n)
+	for i := 0; i < n; i++ {
+		fmt.Scan(&m)
+		jum += m
 	}
+	fmt.Print(jum)
 }

@@ -3,12 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	var n int
-	var k bool
-	fmt.Scan(&n, &k)
-	if n >= 17 && k {
-		fmt.Println("bisa membuat KTP")
-	} else {
-		fmt.Println("belum bisa membuat KTP")
+	var n, aset, prib, masuk int
+	fmt.Scan(&n)
+	for i := 0; i < n; i++ {
+		fmt.Scan(&masuk)
+		prib += masuk / 3
+		aset += masuk % 3
 	}
+	fmt.Println(prib, aset)
 }

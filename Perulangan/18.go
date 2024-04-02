@@ -3,19 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	var input string
-	var hasil bool
-	fmt.Scan(&input)
-	hasil = input == "ya"
-	if hasil {
-		fmt.Scan(&input)
-		hasil = input == "ya"
-		if hasil {
-			fmt.Println("tidak pergi ke minimarket")
-		} else {
-			fmt.Println("pergi ke minimarket")
-		}
-	} else {
-		fmt.Println("tidak pergi ke minimarket")
+	var n, jumlah, masuk int
+	fmt.Scan(&n)
+	for i := 0; i < n; i++ {
+		fmt.Scan(&masuk)
+		jumlah += ((masuk % 100) / 10) + (masuk / 1000 % 10)
 	}
+	fmt.Print(jumlah)
 }
