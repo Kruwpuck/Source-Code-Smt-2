@@ -28,6 +28,8 @@ func home() {
 	fmt.Println("2. Penghapusan Data Pasien")
 	fmt.Println("3. Pengeditan Data Pasien")
 	fmt.Println("4. Pencarian Data Pasien")
+	fmt.Println("5. Keluar")
+
 	fmt.Scan(&opsi)
 	if opsi == 1 {
 		tambah(&data, &jumlah_pasien)
@@ -36,6 +38,8 @@ func home() {
 	} else if opsi == 3 {
 		edit(&data, &jumlah_pasien)
 	} else if opsi == 4 {
+		cari(data, jumlah_pasien)
+	} else if opsi == 5 {
 		cari(data, jumlah_pasien)
 	}
 }
@@ -145,4 +149,7 @@ func display_pasien(A tabInt, idx int) {
 	} else {
 		fmt.Println("Data Pasien Tidak Ditemukan")
 	}
+}
+func edit_masuk(A *tabInt, N *int, idx int) {
+
 }
