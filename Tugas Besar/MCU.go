@@ -72,7 +72,7 @@ func home(A *tData_pasien, B *tLayanan) {
 		} else if opsi == 2 {
 			main_hapus_pasien(&*A, &*B, &n)
 		} else if opsi == 3 {
-			main_edit_pasien(&*A, &*B, &n)
+			main_edit_pasien(&*A, &*B, n)
 		} else if opsi == 4 {
 			main_cari_pasien(*A, *B, n)
 		} else if opsi == 5 {
@@ -274,19 +274,39 @@ func cari_pasien_periode(A tData_pasien, B tLayanan, n int) {
 	if opsi == 1 {
 		fmt.Print("Masukkan Tahun: ")
 		fmt.Scan(&x)
-		display_pasien_tahun(A,n)
+		display_pasien_tahun(A, n, x)
 	} else if opsi == 2 {
 		fmt.Print("Masukkan Tahun & Bulan (YYYY/MM): ")
 		fmt.Scan(&x, &y)
-		display_pasien_bulan(A,n)
+		display_pasien_bulan(A, n, x, y)
 	}
 }
-func display_pasien_tahun(A tData_pasien, n)  {
-	
+func display_pasien_tahun(A tData_pasien, n, x int) {
+	for i := 0; i < n; i++ {
+		if A[i].waktu.tahun == x {
+			display_pasien(A, n, i)
+		}
+	}
+}
+func display_pasien_bulan(A tData_pasien, n, x, y int) {
+	for i := 0; i < n; i++ {
+		if A[i].waktu.tahun == x && A[i].waktu.bulan == y {
+			display_pasien(A, n, i)
+		}
+	}
 }
 
-
 func cari_pasien_paket(A tData_pasien, B tLayanan, n int) {
+	var opsi int
+	fmt.Println("Menu Paket Layanan")
+	list_paket(B)
+	fmt.Print("Pilih Opsi: ")
+	fmt.Scan(&opsi)
+	for i := 0; i < n; i++ {
+		if A[i].jenis.kategori == B[opsi-1].kategori {
+			display_pasien(A, n, i)
+		}
+	}
 
 }
 func display_pasien(A tData_pasien, n, idx int) {
@@ -297,36 +317,10 @@ func display_pasien(A tData_pasien, n, idx int) {
 	fmt.Println("Jenis Layanan        : ", A[idx].jenis.kategori)
 	fmt.Println()
 }
-func home_edit(A *tData_pasien, N *int) {
+
+func main_edit_layanan(A *tData_pasien, B *tLayanan, n int) {
 	var opsi int
-	fmt.Print("Pilih opsi edit: ")
-	fmt.Println("1. Cari Berdasarkan Nama")
-	fmt.Println("2. Cari Berdasarkan ID")
-	fmt.Scan(&opsi)
-	if opsi == 1 {
-		display_pasien(*A, cari_nama(*A, *N))
-	} else if opsi == 2 {
-		display_pasien(*A, cari_id(*A, *N))
-	}
-	fmt.Print("Pilih opsi edit: ")
-	fmt.Println("1. Edit Nama")
-	fmt.Println("2. Edit ID")
-	fmt.Println("3. Edit Waktu Masuk")
-	fmt.Println("4. Edit Layanan")
-	fmt.Scan(&opsi)
-	if opsi == 1 {
-		display_pasien(*A, cari_nama(*A, *N))
-	} else if opsi == 2 {
-		display_pasien(*A, cari_id(*A, *N))
-	} else if opsi == 3 {
-
-	} else if opsi == 4 {
-
-	}
-}
-func edit(A *tData_pasien, N, inx int) {
-
-}
-func edit_masuk(A *tData_pasien, N *int, idx int) {
-
+	fmt.Println("Opsi Edit Layanan")
+	list_paket(*B)
+	fmt.Print("Pilih Layanan Yang Akan Diedit: ")
 }
