@@ -274,11 +274,18 @@ func cari_pasien_periode(A tData_pasien, B tLayanan, n int) {
 	if opsi == 1 {
 		fmt.Print("Masukkan Tahun: ")
 		fmt.Scan(&x)
+		display_pasien_tahun(A,n)
 	} else if opsi == 2 {
 		fmt.Print("Masukkan Tahun & Bulan (YYYY/MM): ")
 		fmt.Scan(&x, &y)
+		display_pasien_bulan(A,n)
 	}
 }
+func display_pasien_tahun(A tData_pasien, n)  {
+	
+}
+
+
 func cari_pasien_paket(A tData_pasien, B tLayanan, n int) {
 
 }
