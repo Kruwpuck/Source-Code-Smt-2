@@ -76,7 +76,7 @@ func home(A *tData_pasien, B *tLayanan) {
 		} else if opsi == 4 {
 			main_cari_pasien(*A, *B, n)
 		} else if opsi == 5 {
-			main_edit_layanan(&*A, &*B, &n)
+			main_edit_layanan(&*A, &*B, n)
 		} else if opsi == 6 {
 			main_display(*A, *B, n)
 		} else if opsi < 1 || opsi > 7 {
@@ -90,13 +90,13 @@ func main_tambah_pasien(A *tData_pasien, B *tLayanan, n *int) {
 	var opsi int
 	fmt.Println("Menu Tambah Pasien")
 	fmt.Println("Masukkan Nama Pasien : ")
-	fmt.Scan(A[*n].nama)
+	fmt.Scan(&A[*n].nama)
 	fmt.Println("Masukkan ID Pasien : ")
-	fmt.Scan(A[*n].id)
+	fmt.Scan(&A[*n].id)
 	fmt.Println("Masukkan Rekap Pasien : ")
-	fmt.Scan(A[*n].rekap)
+	fmt.Scan(&A[*n].rekap)
 	fmt.Println("Masukkan Waktu Check Up Pasien (YYYY/MM/DD) : ")
-	fmt.Scan(A[*n].waktu.tahun, A[*n].waktu.bulan, A[*n].waktu.tanggal)
+	fmt.Scan(&A[*n].waktu.tahun, A[*n].waktu.bulan, A[*n].waktu.tanggal)
 	list_paket(*B)
 	fmt.Println("Masukkan Jenis Paket Pasien Berdasarkan List Diatas : ")
 	fmt.Scan(&opsi)
@@ -323,4 +323,54 @@ func main_edit_layanan(A *tData_pasien, B *tLayanan, n int) {
 	fmt.Println("Opsi Edit Layanan")
 	list_paket(*B)
 	fmt.Print("Pilih Layanan Yang Akan Diedit: ")
+	fmt.Scan(&opsi)
+	if opsi > 0 && opsi < 4 {
+		edit_layanan(&*A, &*B, opsi-1)
+	} else {
+		fmt.Println("Opsi Invalid")
+	}
+}
+func edit_layanan(A *tData_pasien, B *tLayanan, idx int) {
+	fmt.Print("Masukkan nama Paket yang Baru: ")
+	fmt.Scan(B[idx].kategori)
+	fmt.Print("Masukkan harga Paket yang Baru: ")
+	fmt.Scan(B[idx].harga)
+	fmt.Println("Paket Layanan Telah Diperbarui")
+}
+
+func main_display(A tData_pasien, B tLayanan, n int) {
+	var opsi, x, y int
+	fmt.Println("Menu Pemasukkan")
+	fmt.Println("1. Berdasarkan Tahun")
+	fmt.Println("2. Berdasarkan Bulan")
+	fmt.Print("Masukkan Opsi (1/2): ")
+	fmt.Scan(&opsi)
+	if opsi == 1 {
+		fmt.Print("Masukkan Tahun: ")
+		fmt.Scan(&x)
+		fmt.Printf("Data Pemasukkan Tahun %d adalah sebesar Rp. %d \n", x, hitung_pemasukkan_tahun(A, B, n, x))
+		hitung_pemasukkan_tahun(A, B, n, x)
+	} else if opsi == 2 {
+		fmt.Print("Masukkan Tahun & Bulan (YYYY/MM): ")
+		fmt.Scan(&x, &y)
+		fmt.Printf("Data Pemasukkan Tahun %d Bulan %d adalah sebesar Rp. %d \n", x, y, hitung_pemasukkan_bulan(A, B, n, x, y))
+	}
+}
+func hitung_pemasukkan_tahun(A tData_pasien, B tLayanan, n, x int) int {
+	var total int
+	for i := 0; i < 3; i++ {
+		if A[i].waktu.tahun == x {
+			total += B[i].harga
+		}
+	}
+	return total
+}
+func hitung_pemasukkan_bulan(A tData_pasien, B tLayanan, n, x, y int) int {
+	var total int
+	for i := 0; i < 3; i++ {
+		if A[i].waktu.tahun == x && A[i].waktu.bulan == y {
+			total += B[i].harga
+		}
+	}
+	return total
 }
