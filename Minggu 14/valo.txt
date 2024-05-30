@@ -1,0 +1,72 @@
+Insertion Ascend 0 ... NMAX
+for pass ← 1 to n-1 do
+    temp = A[pass]
+    i = pass
+    while i > 0 and A[i-1] > temp do
+        A[i] = A[i-1]
+        i = i -1
+    endwhile
+    A[i] = temp
+endfor
+
+Insertion Descend 1 ... NMAX
+for pass ← 2 to n do
+    temp ← A[pass]
+    i ← pass
+    while i > 1 and A[i-1] < temp do
+        A[i] ← A[i-1]
+        i ← i - 1
+    endwhile
+    A[i] ← temp
+endfor
+
+Selection Ascend 0 ... NMAX
+for pass = 0 to n - 2 do
+    min = pass
+    for i = pass + 1 to n - 1 do
+        if A[i] < A[min] then
+            min = i
+        endif
+        swap(A[pass],A[min])
+    endfor
+endfor
+
+Selection Descend 1 ... NMAX
+for pass ← 1 to n - 1 do
+    max ← pass
+    for i ← pass + 1 to n do
+        if A[i] > A[max] then
+            max ← i 
+        endif
+        swap(A[pass],A[min])
+    endfor
+endfor
+
+Binary Ascend 0 ... NMAX
+right ← n-1
+left ← 0
+mid ← (left + right) div 2
+while left <= right and idx != -1 do
+    if A[mid] == x then
+        idx ← mid
+    else if A[mid] > x then
+        right ← mid - 1
+    else if A[mid] < x then
+        left ← mid + 1
+    endif
+    mid ← (left + right) div 2
+endwhile
+
+Binary Descend 1 ... NMAX 
+right ← n
+left ← 1
+mid ← (left + right) div 2
+while left <= right and idx != -1 do
+    if A[mid] == x then
+        idx ← mid
+    else if A[mid] > x then
+        right ← mid - 1
+    else if A[mid] < x then
+        left ← mid + 1
+    endif
+    mid ← 

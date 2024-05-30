@@ -10,7 +10,8 @@ type tipe_layanan struct {
 }
 
 type data_pasien struct {
-	nama, id, rekap string
+	nama, rekap 	string
+	id  			int
 	waktu           periode
 	jenis           tipe_layanan
 }
@@ -23,42 +24,40 @@ type tLayanan [NMAX]tipe_layanan
 func main() {
 	var dat_pas tData_pasien
 	var dat_lay tLayanan
-	dat_lay[0].kategori = "Reguler"
-	dat_lay[0].harga = 100000
-	dat_lay[1].kategori = "Perunggu"
-	dat_lay[1].harga = 200000
-	dat_lay[2].kategori = "Emas"
-	dat_lay[2].harga = 300000
-	dat_pas[0].nama = "susilo"
-	dat_pas[0].id = "12"
-	dat_pas[0].waktu.tahun = 2021
-	dat_pas[0].waktu.bulan = 9
-	dat_pas[0].waktu.tanggal = 13
-	dat_pas[0].jenis = dat_lay[0]
-	dat_pas[0].rekap = "buta"
-	dat_pas[1].nama = "bambang"
-	dat_pas[1].id = "15"
-	dat_pas[1].waktu.tahun = 2022
-	dat_pas[1].waktu.bulan = 12
-	dat_pas[1].waktu.tanggal = 25
-	dat_pas[1].jenis = dat_lay[1]
-	dat_pas[1].rekap = "lumpuh"
-	dat_pas[2].nama = "yudhoyono"
-	dat_pas[2].id = "17"
-	dat_pas[2].waktu.tahun = 2023
-	dat_pas[2].waktu.bulan = 3
-	dat_pas[2].waktu.tanggal = 9
-	dat_pas[2].jenis = dat_lay[2]
-	dat_pas[2].rekap = "HIV"
+	dat_lay = [NMAX]tipe_layanan{
+        {kategori: "Iron", harga: 100000},
+        {kategori: "Silver", harga: 200000},
+        {kategori: "Gold", harga: 300000},
+        {kategori: "Platinum", harga: 400000},
+        {kategori: "Diamond", harga: 500000},
+    }
+	dat_pas = [NMAX]data_pasien{
+        {nama: "susilo", id: 12, waktu: periode{tahun: 2021, bulan: 9, tanggal: 13}, jenis: dat_lay[0], rekap: "buta"},
+        {nama: "bambang", id: 15, waktu: periode{tahun: 2022, bulan: 12, tanggal: 25}, jenis: dat_lay[1], rekap: "lumpuh"},
+        {nama: "yudhoyono", id: 17, waktu: periode{tahun: 2023, bulan: 3, tanggal: 9}, jenis: dat_lay[2], rekap: "HIV"},
+        {nama: "megawati", id: 11, waktu: periode{tahun: 2024, bulan: 10, tanggal: 3}, jenis: dat_lay[3], rekap: "sakit"},
+        {nama: "soekarno", id: 10, waktu: periode{tahun: 2019, bulan: 1, tanggal: 31}, jenis: dat_lay[4], rekap: "kesurupan"},
+        {nama: "putri", id: 13, waktu: periode{tahun: 2018, bulan: 8, tanggal: 17}, jenis: dat_lay[4], rekap: "cacar air"},
+    }
 	home(&dat_pas, &dat_lay)
 }
+
 func home(A *tData_pasien, B *tLayanan) {
 	var opsi int
-	var n,m int = 3,3
-	for opsi != 9 {
+	var n, m int = 6, 5
+	for opsi != 4 {
 		fmt.Println("===================================================")
 		fmt.Println("Selamat datang Di Layanan Medical Check Up")
 		fmt.Println("Pilih Opsi berikut:")
+		fmt.Println("1. Mengolah Data Pasien")
+		fmt.Println("2. Mengolah Data Paket Layanan")
+		fmt.Println("3. Menampilkan Data")
+		fmt.Println("4. Keluar")
+		fmt.Println("===================================================")
+		fmt.Print("Masukkan Opsi: ")
+		fmt.Println()
+	
+		fmt.Println("===================================================")
 		fmt.Println("1. Penambahan Data Pasien")
 		fmt.Println("2. Penghapusan Data Pasien")
 		fmt.Println("3. Pengeditan Data Pasien")
@@ -71,56 +70,60 @@ func home(A *tData_pasien, B *tLayanan) {
 		fmt.Println("===================================================")
 		fmt.Scan(&opsi)
 		if opsi == 1 {
-			main_tambah_pasien(A, B, &n,m)
+			main_tambah_pasien(&*A, *B, &n, m)
 		} else if opsi == 2 {
-			main_hapus_pasien(A, B, &n)
+			main_hapus_pasien(&*A, *B, &n)
 		} else if opsi == 3 {
-			main_edit_pasien(A, B, n,m)
+			main_edit_pasien(&*A, &*B, n, m)
 		} else if opsi == 4 {
-			main_cari_pasien(*A, *B, n,m)
+			main_cari_pasien(*A, *B, n, m)
 		} else if opsi == 5 {
-			main_tambah_paket(B,&m)
+			main_tambah_paket(&*B, &m)
 		} else if opsi == 6 {
-			main_hapus_paket(A, B, n,&m)
+			main_hapus_paket(&*A, &*B, &n, &m)
 		} else if opsi == 7 {
-			main_edit_layanan(A, B, n,m)
+			main_edit_layanan(&*A, &*B, n, m)
 		} else if opsi == 8 {
 			main_display(*A, *B, n)
 		} else if opsi < 1 || opsi > 9 {
 			fmt.Println("Opsi Invalid")
 		}
 	}
-
 }
 
-func main_tambah_pasien(A *tData_pasien, B *tLayanan, n *int, m int) {
-	var opsi,tahun,bulan,tanggal int
-	var id string
+func main_tambah_pasien(A *tData_pasien, B tLayanan, n *int, m int) {
+	var opsi, tahun, bulan, tanggal int
+	var id int
 	fmt.Println("===================================================")
 	fmt.Println("Menu Tambah Pasien")
 	fmt.Println("Masukkan Nama Pasien : ")
 	fmt.Scan(&A[*n].nama)
 	fmt.Println("Masukkan ID Pasien : ")
 	fmt.Scan(&id)
-	for !cek_id_pasien(*A,*n,id){
-		fmt.Println("Masukkan ID Pasien : ")
+	for !cek_id_pasien(*A, *n, id) {
+		fmt.Println("Masukkan ID Pasien yang valid : ")
 		fmt.Scan(&id)
 	}
-	A[*n].id=id
+	A[*n].id = id
 	fmt.Println("Masukkan Rekap Pasien : ")
 	fmt.Scan(&A[*n].rekap)
 	fmt.Println("Masukkan Waktu Check Up Pasien (YYYY/MM/DD) : ")
-	fmt.Scan(&tahun,&bulan,&tanggal)
-	for !cek_waktu_pasien(tahun,bulan,tanggal){
-		fmt.Println("Masukkan Waktu Check Up Pasien (YYYY/MM/DD) : ")
-		fmt.Scan(&tahun,&bulan,&tanggal)
+	fmt.Scan(&tahun, &bulan, &tanggal)
+	for !cek_waktu_pasien(tahun, bulan, tanggal) {
+		fmt.Println("Masukkan Waktu Check Up Pasien yang valid (YYYY/MM/DD) : ")
+		fmt.Scan(&tahun, &bulan, &tanggal)
 	}
 	A[*n].waktu.tahun = tahun
-	A[*n].waktu.bulan =  bulan
+	A[*n].waktu.bulan = bulan
 	A[*n].waktu.tanggal = tanggal
-	list_paket(*B,m)
+	list_paket(B, m)
 	fmt.Println("Masukkan Jenis Paket Pasien Berdasarkan List Diatas : ")
 	fmt.Scan(&opsi)
+	for opsi < 1 || opsi > m {
+		fmt.Println("Input Invalid")
+		fmt.Println("Masukkan Jenis Paket Pasien Berdasarkan List Diatas : ")
+		fmt.Scan(&opsi)
+	}
 	fmt.Println("===================================================")
 	fmt.Println("Data Pasien Berhasil Ditambahkan")
 	fmt.Println("===================================================")
@@ -133,8 +136,8 @@ func list_paket(B tLayanan, m int) {
 		fmt.Printf("%d. %s %d \n", i+1, B[i].kategori, B[i].harga)
 	}
 }
-func main_hapus_pasien(A *tData_pasien, B *tLayanan, n *int) {
-	var opsi int
+func main_hapus_pasien(A *tData_pasien, B tLayanan, n *int) {
+	var opsi, y int
 	var x string
 	var idx int = -1
 	fmt.Println("===================================================")
@@ -144,7 +147,7 @@ func main_hapus_pasien(A *tData_pasien, B *tLayanan, n *int) {
 	fmt.Println("2. ID")
 	fmt.Print("Pilih Opsi :")
 	fmt.Scan(&opsi)
-	for opsi != 1 && opsi != 2  {
+	for opsi != 1 && opsi != 2 {
 		fmt.Println("Opsi Invalid ")
 		fmt.Print("Pilih Opsi :")
 		fmt.Scanln(&opsi)
@@ -155,12 +158,13 @@ func main_hapus_pasien(A *tData_pasien, B *tLayanan, n *int) {
 		idx = cari_nama(*A, *n, x)
 	} else if opsi == 2 {
 		fmt.Print("Masukkan ID pasien: ")
-		fmt.Scan(&x)
-		idx = cari_id(*A, *n, x)
+		fmt.Scan(&y)
+		idx = cari_id(*A, *n, y)
 	}
-	hapus_pasien(A, B, n, idx)
+	hapus_pasien(&*A, B, &*n, idx)
 	fmt.Println("===================================================")
 }
+
 func cari_nama(A tData_pasien, n int, x string) int {
 	var idx int = -1
 	i := 0
@@ -173,44 +177,64 @@ func cari_nama(A tData_pasien, n int, x string) int {
 	return idx
 }
 
-func cari_id(A tData_pasien, n int, x string) int {
-	var idx int = -1
-	i := 0
-	for i < n && idx == -1 {
-		if A[i].id == x {
-			idx = i
+
+func cari_id(A tData_pasien, n, y int) int {
+	ascend_insertion_sort(&A, n)
+	var left, mid, right int
+	left = 0
+	right = n - 1
+	idx := -1
+	for left <= right && A[mid].id != y{
+		mid = (left + right) / 2
+		if y < A[mid].id{
+			right = mid - 1
+		}else if y > A[mid].id{
+			left = mid + 1
+		}else if mid == A[mid].id{
+			idx = mid
 		}
-		i++
 	}
 	return idx
 }
 
-func hapus_pasien(A *tData_pasien, B *tLayanan, n *int, idx int) {
+func ascend_insertion_sort(A *tData_pasien, n int) {
+	for i := 1; i < n; i++ {
+		j := i
+		for j > 0 {
+			if A[j-1].id > A[j].id {
+				A[j-1], A[j] = A[j], A[j-1]
+			}
+			j = j - 1
+		}
+	}
+}
+
+
+func hapus_pasien(A *tData_pasien, B tLayanan, n *int, idx int) {
 	if idx == -1 {
 		fmt.Println("Data Tidak Ditemukan")
-	}else{
-		display_pasien(*A,*n,idx)
+	} else {
+		display_pasien(*A, idx)
 		for i := idx; i < *n-1; i++ {
 			A[i] = A[i+1]
 		}
 		*n--
 		fmt.Println("Data Pasien Di Atas Telah Dihapus")
 	}
-
 }
 
-func main_edit_pasien(A *tData_pasien, B *tLayanan, n,m int) {
-	var opsi int
+func main_edit_pasien(A *tData_pasien, B *tLayanan, n, m int) {
+	var opsi, y int
 	var x string
 	var idx int = -1
 	fmt.Println("===================================================")
 	fmt.Println("Menu Edit Data Pasien")
-	fmt.Println("Cari Data Pasien yang akan Diedit berdasarkan :")
+	fmt.Println("Cari Data Pasien yang akan diedit berdasarkan :")
 	fmt.Println("1. Nama")
 	fmt.Println("2. ID")
 	fmt.Print("Pilih Opsi :")
 	fmt.Scan(&opsi)
-	for opsi != 1 && opsi != 2  {
+	for opsi != 1 && opsi != 2 {
 		fmt.Println("Opsi Invalid ")
 		fmt.Print("Pilih Opsi :")
 		fmt.Scanln(&opsi)
@@ -221,65 +245,56 @@ func main_edit_pasien(A *tData_pasien, B *tLayanan, n,m int) {
 		idx = cari_nama(*A, n, x)
 	} else if opsi == 2 {
 		fmt.Print("Masukkan ID pasien: ")
-		fmt.Scan(&x)
-		idx = cari_id(*A, n, x)
+		fmt.Scan(&y)
+		idx = cari_id(*A, n, y)
 	}
+	edit_pasien(&*A, &*B, n, m, idx)
 	fmt.Println("===================================================")
-	edit_pasien(A, B,n,m, idx)
 }
 
-func edit_pasien(A *tData_pasien, B *tLayanan,n,m,idx int) {
-	var opsi,tahun,bulan,tanggal int
-	var id string
+func edit_pasien(A *tData_pasien, B *tLayanan, n, m, idx int) {
+	var nama, rekap string
+	var opsi, tahun, bulan, tanggal int
 	if idx == -1 {
 		fmt.Println("Data Tidak Ditemukan")
-	}else{
-		fmt.Println("Data yang akan Diedit")
-		fmt.Println("1. Nama")
-		fmt.Println("2. ID")
-		fmt.Println("3. Waktu Check Up")
-		fmt.Println("4. Rekap")
-		fmt.Println("5. Paket Layanan")
-		fmt.Print("Masukkan Opsi (1/2/3/4/5): ")
-		fmt.Scan(&opsi)
-		for opsi < 1 || opsi > 5 {
-			fmt.Println("Opsi Invalid")
-			fmt.Print("Masukkan Opsi (1/2/3/4/5): ")
-			fmt.Scan(&opsi)
+	} else {
+		display_pasien(*A, idx)
+		fmt.Println("===================================================")
+		fmt.Print("Masukkan Nama Pasien baru atau '-' untuk tidak mengedit : ")
+		fmt.Scan(&nama)
+		if nama != "-" {
+			A[idx].nama = nama
 		}
-		if opsi == 1 {
-			fmt.Print("Masukkan Nama Pasien yang Baru: ")
-			fmt.Scan(&A[idx].nama)
-		} else if opsi == 2 {
-			fmt.Print("Masukkan ID Pasien yang Baru: ")
-			fmt.Scan(&id)
-			for !cek_id_pasien(*A,n,id){
-				fmt.Print("Masukkan ID Pasien yang Baru: ")
-				fmt.Scan(&id)
-			}
-			A[idx].id = id
-		} else if opsi == 3 {
-			fmt.Print("Masukkan Waktu Check Up Pasien yang Baru (YYYY/MM/DD): ")
-			fmt.Scan(&tahun,&bulan,&tanggal)
-			for !cek_waktu_pasien(tahun,bulan,tanggal){
-				fmt.Println("Masukkan Waktu Check Up Pasien (YYYY/MM/DD) : ")
-				fmt.Scan(&tahun,&bulan,&tanggal)
+		fmt.Print("Masukkan Rekap Pasien baru atau '-' untuk tidak mengedit : ")
+		fmt.Scan(&rekap)
+		if rekap != "-" {
+			A[idx].rekap = rekap
+		}
+		fmt.Println("Masukkan Waktu Check Up Pasien baru (YYYY/MM/DD) atau '-' untuk tidak mengedit : ")
+		fmt.Scan(&tahun, &bulan, &tanggal)
+		if tahun != 0 && bulan != 0 && tanggal != 0 {
+			for !cek_waktu_pasien(tahun, bulan, tanggal) {
+				fmt.Println("Masukkan Waktu Check Up Pasien yang valid (YYYY/MM/DD) : ")
+				fmt.Scan(&tahun, &bulan, &tanggal)
 			}
 			A[idx].waktu.tahun = tahun
-			A[idx].waktu.bulan =  bulan
+			A[idx].waktu.bulan = bulan
 			A[idx].waktu.tanggal = tanggal
-		} else if opsi == 4 {
-			fmt.Print("Masukkan Rekap Pasien yang Baru: ")
-			fmt.Scan(&A[idx].rekap)
-		} else if opsi == 5 {
-			list_paket(*B,m)
-			fmt.Print("Masukkan Paket Layanan Pasien yang Baru Berdasarkan List Diatas: ")
-			fmt.Scan(&opsi)
+		}
+		list_paket(*B, m)
+		fmt.Println("Masukkan Jenis Paket Pasien Berdasarkan List Diatas atau '-' untuk tidak mengedit: ")
+		fmt.Scan(&opsi)
+		if opsi != 0 {
+			for opsi < 1 || opsi > m {
+				fmt.Println("Input Invalid")
+				fmt.Println("Masukkan Jenis Paket Pasien Berdasarkan List Diatas : ")
+				fmt.Scan(&opsi)
+			}
 			A[idx].jenis = B[opsi-1]
 		}
 		fmt.Println("===================================================")
-		fmt.Println("Data Pasien Telah Diperbaharui")
-
+		fmt.Println("Data Pasien Berhasil Diedit")
+		fmt.Println("===================================================")
 	}
 }
 
@@ -307,7 +322,7 @@ func main_cari_pasien(A tData_pasien, B tLayanan, n,m int) {
 }
 
 func cari_pasien_individu(A tData_pasien, B tLayanan, n int) {
-	var opsi int
+	var opsi,y int
 	var x string
 	fmt.Println("Menu Cari Pasien")
 	fmt.Println("1. Cari Berdasarkan Nama")
@@ -322,47 +337,102 @@ func cari_pasien_individu(A tData_pasien, B tLayanan, n int) {
 	if opsi == 1 {
 		fmt.Print("Masukkan Nama Pasien: ")
 		fmt.Scan(&x)
-		display_pasien(A, n, cari_nama(A, n, x))
+		display_pasien(A, cari_nama(A, n, x))
 	} else if opsi == 2 {
 		fmt.Print("Masukkan ID Pasien: ")
-		fmt.Scan(&x)
-		display_pasien(A, n, cari_id(A, n, x))
+		fmt.Scan(&y)
+		display_pasien(A, cari_id(A, n, y))
 	}
 }
 func cari_pasien_periode(A tData_pasien, B tLayanan, n int) {
-	var opsi int
-	var x, y int
+
+	var y1,m1,d1,y2,m2,d2 int
 	fmt.Println("Menu Cari Pasien Periodik")
-	fmt.Println("1. Cari Tahun Tertentu")
-	fmt.Println("2. Cari Bulan Tertentu ")
-	fmt.Print("Pilih Opsi (1/2): ")
-	fmt.Scan(&opsi)
-	if opsi == 1 {
-		fmt.Print("Masukkan Tahun: ")
-		fmt.Scan(&x)
-		display_pasien_tahun(A, n, x)
-	} else if opsi == 2 {
-		fmt.Print("Masukkan Tahun & Bulan (YYYY/MM): ")
-		fmt.Scan(&x, &y)
-		display_pasien_bulan(A, n, x, y)
+	fmt.Println("Masukkan Waktu Awal (YYYY/MM/DD): ")
+	fmt.Scan(&y1,&m1,&d1)
+	for !cek_waktu_pasien(y1,m1,d1){
+		fmt.Scan(&y1,&m1,&d1)
 	}
+	fmt.Println("Masukkan Waktu Akhir (YYYY/MM/DD): ")
+	fmt.Scan(&y2,&m2,&d2)
+	for !cek_waktu_pasien(y2,m2,d2) || y1 < y2 || (y1==y2 && m2 > m1) || (y1==y2 && m2 == m1 && d2 > d1){
+		fmt.Scan(&y2,&m2,&d2)
+	}
+	display_pasien_periodik(A,n,y1,m1,d1,y2,m2,d2)
 }
-func display_pasien_tahun(A tData_pasien, n, x int) {
-	for i := 0; i < n; i++ {
-		if A[i].waktu.tahun == x {
-			fmt.Println("===================================================")
-			display_pasien(A, n, i)
+func display_pasien_periodik(A tData_pasien,n, y1,m1,d1,y2,m2,d2 int)  {
+	var i int
+	var hari1, hari2, hari_cek int
+	
+	hari1= y1 * 360 + bulan_hari(m1,y1) + d1
+	hari2= y2 * 360 + bulan_hari(m2,y2) + d2
+	hari_cek = A[i].waktu.tahun * 360 + bulan_hari(A[i].waktu.bulan,A[i].waktu.tahun) + A[i].waktu.tanggal
+	for i = 0; i < n; i++ {
+		if hari2 >= hari_cek && hari1 <= hari_cek{
+			display_pasien(A,i)
 		}
 	}
 }
-func display_pasien_bulan(A tData_pasien, n, x, y int) {
-	for i := 0; i < n; i++ {
-		if A[i].waktu.tahun == x && A[i].waktu.bulan == y {
-			fmt.Println("===================================================")
-			display_pasien(A, n, i)
+func bulan_hari(x,y int) int {
+	var hasil int 
+	 if x == 1{
+		hasil = 0
+	}else if x == 2{
+		hasil = 31
+	}else if x == 3{
+		if cek_tahun_kabisat(y){
+			hasil = 60
 		}
+		hasil = 59
+	}else if x == 4{
+		if cek_tahun_kabisat(y){
+			hasil = 91
+		}
+		hasil = 90
+	}else if x == 5{
+		if cek_tahun_kabisat(y){
+			hasil = 121
+		}
+		hasil = 120
+	}else if x == 6{
+		if cek_tahun_kabisat(y){
+			hasil = 152
+		}
+		hasil = 151
+	}else if x == 7{
+		if cek_tahun_kabisat(y){
+			hasil = 182
+		}
+		hasil = 181
+	}else if x == 8{
+		if cek_tahun_kabisat(y){
+			hasil = 213
+		}
+		hasil = 212
+	}else if x == 9{
+		if cek_tahun_kabisat(y){
+			hasil = 244
+		}
+		hasil = 243
+	}else if x == 10{
+		if cek_tahun_kabisat(y){
+			hasil = 274
+		}
+		hasil = 273
+	}else if x == 11{
+		if cek_tahun_kabisat(y){
+			hasil = 305
+		}
+		hasil = 304
+	}else if x == 12{
+		if cek_tahun_kabisat(y){
+			hasil = 335
+		}
+		hasil = 334
 	}
+	return hasil
 }
+
 
 func cari_pasien_paket(A tData_pasien, B tLayanan, n,m int) {
 	var opsi int
@@ -372,19 +442,23 @@ func cari_pasien_paket(A tData_pasien, B tLayanan, n,m int) {
 	fmt.Scan(&opsi)
 	for i := 0; i < n; i++ {
 		if A[i].jenis.kategori == B[opsi-1].kategori {
-			display_pasien(A, n, i)
+			display_pasien(A, i)
 		}
 	}
-
 }
-func display_pasien(A tData_pasien, n, idx int) {
-	fmt.Println("===================================================")
-	fmt.Println("Nama Pasien          : ", A[idx].nama)
-	fmt.Println("ID Pasien            : ", A[idx].id)
-	fmt.Println("Rekap Pasien         : ", A[idx].rekap)
-	fmt.Printf("Waktu Check Up Pasien: %d/%d/%d \n", A[idx].waktu.tahun, A[idx].waktu.bulan, A[idx].waktu.tanggal)
-	fmt.Println("Jenis Layanan        : ", A[idx].jenis.kategori)
-	fmt.Println()
+func display_pasien(A tData_pasien, idx int) {
+	if idx == -1{
+		fmt.Println("Data Tidak Ditemukan")
+	}else{
+		fmt.Println("===================================================")
+		fmt.Println("Nama Pasien          : ", A[idx].nama)
+		fmt.Println("ID Pasien            : ", A[idx].id)
+		fmt.Println("Rekap Pasien         : ", A[idx].rekap)
+		fmt.Printf("Waktu Check Up Pasien: %d/%d/%d \n", A[idx].waktu.tahun, A[idx].waktu.bulan, A[idx].waktu.tanggal)
+		fmt.Println("Jenis Layanan        : ", A[idx].jenis.kategori)
+		fmt.Println()
+	}
+
 }
 
 func main_edit_layanan(A *tData_pasien, B *tLayanan, n,m int) {
@@ -398,30 +472,31 @@ func main_edit_layanan(A *tData_pasien, B *tLayanan, n,m int) {
 		fmt.Print("Pilih Layanan Yang Akan Diedit: ")
 		fmt.Scan(&opsi)
 	}
-	edit_layanan(A, B,n,m, opsi-1)
+	edit_layanan(&*A, &*B,n,m, opsi-1)
 
 }
 func edit_layanan(A *tData_pasien, B *tLayanan, n,m, idx int) {
 	var nama string
-	if idx == 0{
-		fmt.Println("Nama Paket Reguler Tidak Dapat Diedit")
-		fmt.Print("Masukkan harga Paket yang Baru: ")
-		fmt.Scanln(&B[idx].harga)
-		update_harga_layanan(&*A,*B, n,0)
-	}else{
+	var harga int
+	fmt.Print("Masukkan nama Paket yang Baru: ")
+    fmt.Scan(&nama)
+	for !cek_nama_paket(*B,m, nama ){
 		fmt.Print("Masukkan nama Paket yang Baru: ")
 		fmt.Scan(&nama)
-		for !cek_nama_paket(*B,m, nama ){
-			fmt.Print("Masukkan nama Paket yang Baru: ")
-			fmt.Scan(&nama)
-		}
-		update_nama_layanan(&*A,*B,n,idx, nama)
-		fmt.Scanln(&B[idx].kategori)
-		fmt.Print("Masukkan harga Paket yang Baru: ")
-		fmt.Scanln(&B[idx].harga)
-		update_harga_layanan(&*A,*B, n,idx)
 	}
-	fmt.Println("Paket Layanan Telah Diperbarui")
+	update_nama_layanan(&*A,*B,n,idx, nama)
+	B[idx].kategori = nama
+	fmt.Print("Masukkan harga Paket yang Baru: ")
+	fmt.Scan(&harga)
+	for harga < 0{
+		fmt.Println("Harga Tidak Bisa Negatif")
+		fmt.Print("Masukkan harga Paket yang Baru: ")
+		fmt.Scan(&harga)
+	}
+	B[idx].harga = harga
+	update_harga_layanan(&*A,*B, n,idx)
+
+
 }
 func update_harga_layanan(A *tData_pasien, B tLayanan, n,idx int)  {
 	for i := 0; i < n; i++ {
@@ -438,40 +513,37 @@ func update_nama_layanan(A *tData_pasien, B tLayanan, n,idx int, x string)  {
 	}
 }
 
-func main_hapus_paket(A *tData_pasien, B *tLayanan,n int, m *int)  {
+func main_hapus_paket(A *tData_pasien, B *tLayanan,n *int, m *int)  {
 	var opsi int
 	fmt.Println("Menu Hapus Paket Layanan")
 	list_paket(*B,*m)
 	fmt.Print("Masukkan Paket Layanan Yang Ingin Dihapus: ")
 	fmt.Scan(&opsi)
 
-	if opsi == 1{
-		fmt.Println("Paket Reguler Tidak Dapat Dihapus")
-	}else if opsi < 2 || opsi > *m{
-		fmt.Println("Paket Layanan Tidak Ada")
+	for  opsi < 1 || opsi > *m{
+		fmt.Println("Input Invalid")
 		fmt.Print("Masukkan Paket Layanan Yang Ingin Dihapus: ")
 		fmt.Scan(&opsi)
 	}
-	transfer_paket_pasien(&*A, &*B,n,opsi-1)
+	hapus_pasien_paket(&*A,*B,&*n,opsi-1)
 	fmt.Println("===================================================")
 	hapus_paket(&*B,&*m,opsi-1)
 }
 
-func transfer_paket_pasien(A *tData_pasien, B *tLayanan, n, idx int)  {
-	for i := 0; i < n; i++ {
-		if A[i].jenis.kategori ==  B[idx].kategori{
-			A[i].jenis = B[0]
+func hapus_pasien_paket(A *tData_pasien, B tLayanan, n *int, idx int)  {
+	for i := 0; i < *n; i++ {
+		if A[i].jenis.kategori == B[idx].kategori{
+			hapus_pasien(&*A,B,&*n,i)
 		}
 	}
 }
+
 
 func hapus_paket(B *tLayanan, m *int, idx int)  {
 	for i := idx; i < *m-1; i++ {
 		B[i] = B[i+1]
 	}
 	*m--
-	fmt.Println("Data Paket Layanan Telah Dihapus")
-	fmt.Println("Pasien Yang Menggunakan Paket Layanan Tersebut Diubah ke Paket Reguler")
 }
 
 func main_tambah_paket(B *tLayanan, m *int)  {
@@ -483,7 +555,7 @@ func main_tambah_paket(B *tLayanan, m *int)  {
 		fmt.Scan(&nama)
 	}
 	B[*m].kategori = nama
-	fmt.Print("Masukkan Harga Pake: ")
+	fmt.Print("Masukkan Harga Paket: ")
 	fmt.Scan(&B[*m].harga)
 	*m++
 }
@@ -499,67 +571,65 @@ func cek_nama_paket(B tLayanan, m int, x string) bool  {
 }
 
 func main_display(A tData_pasien, B tLayanan, n int) {
-	var opsi, x, y int
+	var opsi int
+	var y1,m1,d1,y2,m2,d2 int
 	fmt.Println("Menu Pemasukkan")
-	fmt.Println("1. Berdasarkan Tahun")
-	fmt.Println("2. Berdasarkan Bulan")
+	fmt.Println("1. Berdasarkan Periode")
+	fmt.Println("2. Descending Waktu")
 	fmt.Println("3. Ascending Waktu")
-	fmt.Println("4. Descending Waktu")
+	fmt.Println("4. Descending Paket")
 	fmt.Println("5. Ascending Paket")
-	fmt.Println("6. Descending Paket")
-	fmt.Print("Masukkan Opsi (1/2/3/4/5/6): ")
+	fmt.Print("Masukkan Opsi (1/2/3/4/5): ")
 	fmt.Scan(&opsi)
+	for opsi < 1 || opsi > 5 {
+		fmt.Println("Opsi Invalid")
+		fmt.Print("Masukkan Opsi (1/2/3/4/5/6): ")
+		fmt.Scan(&opsi)
+	}
 	if opsi == 1 {
-		fmt.Print("Masukkan Tahun: ")
-		fmt.Scan(&x)
-		fmt.Printf("Data Pemasukkan Tahun %d adalah sebesar Rp. %d \n", x, hitung_pemasukkan_tahun(A, B, n, x))
+		fmt.Println("Menu Cari Pasien Periodik")
+		fmt.Println("Masukkan Waktu Awal (YYYY/MM/DD): ")
+		fmt.Scan(&y1,&m1,&d1)
+		for !cek_waktu_pasien(y1,m1,d1){
+			fmt.Scan(&y1,&m1,&d1)
+		}
+		fmt.Println("Masukkan Waktu Akhir (YYYY/MM/DD): ")
+		fmt.Scan(&y2,&m2,&d2)
+		for !cek_waktu_pasien(y2,m2,d2) || y1 > y2 || (y1==y2 && m2 < m1) || (y1==y2 && m2 == m1 && d2 < d1){
+			fmt.Scan(&y2,&m2,&d2)
+		}
+		hitung_pemasukkan(A,n,y1,m1,d1,y2,m2,d2)
 	} else if opsi == 2 {
-		fmt.Print("Masukkan Tahun & Bulan (YYYY/MM): ")
-		fmt.Scan(&x, &y)
-		fmt.Printf("Data Pemasukkan Tahun %d Bulan %d adalah sebesar Rp. %d \n", x, y, hitung_pemasukkan_bulan(A, B, n, x, y))
+		ascending_waktu(A,n)
 	} else if opsi == 3 {
 		descending_waktu(A,n)
 	} else if opsi == 4 {
-		ascending_waktu(A,n)
+		ascending_paket(A,n)
 	} else if opsi == 5 {
 		descending_paket(A,n)
-	} else if opsi == 6 {
-		ascending_paket(A,n)
 	}
-}
-func hitung_pemasukkan_tahun(A tData_pasien, B tLayanan, n, x int) int {
-	var total int
-	for i := 0; i < n; i++ {
-		if A[i].waktu.tahun == x {
-			for j := 0; j < 3; j++ {
-				if A[i].jenis.kategori == B[j].kategori {
-					total += B[j].harga
-				}
-			}
-		}
-	}
-	return total
-}
-func hitung_pemasukkan_bulan(A tData_pasien, B tLayanan, n, x, y int) int {
-	var total int
-	for i := 0; i < n; i++ {
-		if A[i].waktu.tahun == x && A[i].waktu.bulan == y {
-			for j := 0; j < 3; j++ {
-				if A[i].jenis.kategori == B[j].kategori {
-					total += B[j].harga
-				}
-			}
-		}
-	}
-	return total
 }
 
-func descending_waktu(A tData_pasien, n int) {
+func hitung_pemasukkan(A tData_pasien,n, y1,m1,d1,y2,m2,d2 int) {
+	var i,total int
+	var hari1, hari2, hari_cek int
+	
+	hari1= y1 * 360 + bulan_hari(m1,y1) + d1
+	hari2= y2 * 360 + bulan_hari(m2,y2) + d2
+	hari_cek = A[i].waktu.tahun * 360 + bulan_hari(A[i].waktu.bulan,A[i].waktu.tahun) + A[i].waktu.tanggal
+	for i = 0; i < n; i++ {
+		if hari2 >= hari_cek && hari1 <= hari_cek{
+			total+= A[i].jenis.harga
+		}
+	}
+	fmt.Printf("Total Pemasukkan Mulai Dari %d/%d/%d hingga %d/%d/%d adalah sebesar Rp. %d Rupiah \n", y1,m1,d1,y2,m2,d2,total)
+}
+func ascending_waktu(A tData_pasien, n int) {
 	sort_tahun_descend(&A, n)
 	sort_bulan_descend(&A, n)
 	sort_tanggal_descend(&A, n)
 	for i := 0; i < n; i++ {
-		display_pasien(A,n,i)
+		display_pasien(A,i)
 	}
 }
 
@@ -602,12 +672,12 @@ func sort_tanggal_descend(A *tData_pasien, n int)  {
 	}
 }
 
-func ascending_waktu(A tData_pasien, n int) {
+func descending_waktu(A tData_pasien, n int) {
 	sort_tahun_ascend(&A, n)
 	sort_bulan_ascend(&A, n)
 	sort_tanggal_ascend(&A, n)
 	for i := 0; i < n; i++ {
-		display_pasien(A,n,i)
+		display_pasien(A,i)
 	}
 }
 
@@ -652,7 +722,7 @@ func sort_tanggal_ascend(A *tData_pasien, n int)  {
 
 
 
-func descending_paket(A tData_pasien, n int) {
+func ascending_paket(A tData_pasien, n int) {
 	var i, pass, idx_max int
 	for pass = 0; pass <= n-2; pass++ {
 		idx_max = pass
@@ -664,10 +734,10 @@ func descending_paket(A tData_pasien, n int) {
 		A[pass] , A[idx_max] = A[idx_max] , A[pass]
 	}
 	for i := 0; i < n; i++ {
-		display_pasien(A,n,i)
+		display_pasien(A,i)
 	}
 }
-func ascending_paket(A tData_pasien, n int) {
+func descending_paket(A tData_pasien, n int) {
 	var i, pass, idx_min int
 	for pass = 0; pass <= n-2; pass++ {
 		idx_min = pass
@@ -679,16 +749,11 @@ func ascending_paket(A tData_pasien, n int) {
 		A[pass] , A[idx_min] = A[idx_min] , A[pass]
 	}
 	for i := 0; i < n; i++ {
-		display_pasien(A,n,i)
+		display_pasien(A,i)
 	}
 }
-// func swap(A, B *tData_pasien) {
-// 	var c tData_pasien
-// 	*A = c
-// 	*A = *B
-// 	*B = c
-// }
-func cek_id_pasien(A tData_pasien, n int, x string) bool {
+
+func cek_id_pasien(A tData_pasien, n int, x int) bool {
 	var i int = 0
 	var uniq bool = true
 	for i < n {
@@ -727,14 +792,15 @@ func cek_waktu_pasien(x,y,z int) bool {
 	return valid
 }
 func cek_tahun_kabisat(x int) bool {
+	var valid bool = false
     if x%400 == 0 {
-        return true
-    }
-    if x%100 == 0 {
-        return false
-    }
-    if x%4 == 0 {
-        return true
-    }
-    return false
+        valid = true
+    }else if x%100 == 0 {
+        valid = false
+    }else if x%4 == 0 {
+        valid = true
+    }else{
+		valid = false
+	}
+    return valid
 }
