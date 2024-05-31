@@ -46,7 +46,7 @@ func main() {
 
 func tampilan_home(A *tabPasien, B *tabLayanan) {
 	var opsi int
-	var nData, mData int = 6, 5
+	var nData, mData int = 6,5
 	for opsi != 9 {
 		fmt.Println("---------------------------------------------")
 		fmt.Println("||                                         ||")
