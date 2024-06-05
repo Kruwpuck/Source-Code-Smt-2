@@ -52,10 +52,10 @@ func main() {
 	data[3].fasilitas[1] = "Tempat Makan"
 	data[3].fasilitas[5] = "Wahana"
 	nData = 4
-	login(data, nData, fasilitas)
+	login(&data, &nData, fasilitas)
 }
 
-func login(data tabWisata, nData int, fasilitas fitur) {
+func login(data *tabWisata, nData *int, fasilitas fitur) {
 	var opsi int
 	for opsi != 3{
 		fmt.Println("===================================================")
@@ -66,15 +66,15 @@ func login(data tabWisata, nData int, fasilitas fitur) {
 		fmt.Println("===================================================")
 		fmt.Scan(&opsi)
 		if opsi == 1{
-			home_admin(data, nData, fasilitas)
+			home_admin(&*data, &*nData, fasilitas)
 		}else if opsi == 2 {
-			home_user(data, nData, fasilitas)
+			home_user(*data, *nData, fasilitas)
 		}else if opsi < 1 || opsi > 3{
 			fmt.Println("Opsi Invalid")
 		}
 	}
 }
-func home_admin(data tabWisata, nData int, fasilitas fitur ) {
+func home_admin(data *tabWisata, nData *int, fasilitas fitur ) {
 	var opsi int
 	for opsi != 4 {
 		fmt.Println("===================================================")
@@ -86,11 +86,11 @@ func home_admin(data tabWisata, nData int, fasilitas fitur ) {
 		fmt.Println("===================================================")
 		fmt.Scan(&opsi)
 		if opsi == 1{
-			main_tambah_wisata(&data, &nData, fasilitas)
+			main_tambah_wisata(&*data, &*nData, fasilitas)
 		}else if opsi == 2{
-			main_edit_wisata(data, nData, fasilitas)
+			main_edit_wisata(*data, *nData, fasilitas)
 		}else if opsi == 3{
-			main_hapus_wisata(data, nData, fasilitas)
+			main_hapus_wisata(*data, *nData, fasilitas)
 		}else if opsi < 1 || opsi > 4{
 			fmt.Println("Opsi Invalid")
 		}
@@ -98,6 +98,7 @@ func home_admin(data tabWisata, nData int, fasilitas fitur ) {
 }
 func main_tambah_wisata(data *tabWisata, nData *int, fasilitas fitur)  {
 	var opsi int
+	
 	fmt.Println("===================================================")
 	fmt.Println("Masukkan Nama Wisata")
 	fmt.Scan(&data[*nData].nama)
@@ -125,7 +126,7 @@ func main_tambah_wisata(data *tabWisata, nData *int, fasilitas fitur)  {
 			data[*nData].fasilitas[5] = fasilitas[5] 
 		}
 	}
-
+	display_wisata(*data, fasilitas, *nData)
 	*nData++
 	fmt.Println("===================================================")
 }
@@ -158,7 +159,8 @@ func main_edit_wisata(data tabWisata, nData int, fasilitas fitur)  {
 		fmt.Println("Masukkan ID Wisata")
 		fmt.Scan(&y)
 		fmt.Println(y)
-		idx = cari_id_wisata(data,nData,y)
+		ascend_id_insertion(&data, nData)
+		idx = cari_id_wisata_binary(data,fasilitas,nData,y)
 		if idx != -1{
 			edit_wisata(&data, fasilitas, idx)
 		}
@@ -179,20 +181,7 @@ func cari_nama_wisata(data tabWisata,nData int, x string) int  {
 	return idx
 
 }
-func cari_id_wisata(data tabWisata,nData int, y int) int  {
-	var idx int = -1
-	for i := 0; i < nData; i++ {
-		if data[i].id == y {
-			idx = i
-			i+= nData
-		}
-	}
-	if idx == -1{
-		fmt.Println("Data tidak ditemukan")
-	}
-	return idx
 
-}
 func edit_wisata(data *tabWisata,fasilitas fitur,idx int)  {
 	var opsi int
 	fmt.Println("===================================================")
@@ -249,7 +238,8 @@ func main_hapus_wisata(data tabWisata, nData int, fasilitas fitur) {
 	}else if opsi == 2{
 		fmt.Println("Masukkan ID Wisata")
 		fmt.Scan(&y)
-		idx = cari_id_wisata(data,nData,y)
+		ascend_id_insertion(&data, nData)
+		idx = cari_id_wisata_binary(data,fasilitas,nData,y)
 		if idx != -1{
 			hapus_wisata(&data, &nData, idx)
 			fmt.Println("Data telah dihapus")
@@ -422,36 +412,35 @@ func main_cari_wisata(data tabWisata, nData int, fasilitas fitur)  {
 	}else if opsi == 2{
 		fmt.Println("Masukkan ID Wisata")
 		fmt.Scan(&y)
-		idx = cari_id_wisata(data,nData,y)
+		ascend_id_insertion(&data, nData)
+		idx = cari_id_wisata_binary(data,fasilitas,nData,y)
 		if idx != -1{
 			display_wisata(data,fasilitas,idx)
 		}
 	}
 }
-func cari_id_wisata_binary(data tabWisata, nData,y int) int{
-	ascend_id_insertion(&data, nData)
+func cari_id_wisata_binary(data tabWisata, fasilitas fitur, nData,y int) int{
 	var left, mid, right int
 	left = 0
 	right = nData - 1
-	idx := -1
-	for left <= right && data[mid].id != y{
+	for left <= right {
 		mid = (left + right) / 2
-		if y < data[mid].id{
+		if data[mid].id == y {
+			return mid
+		} else if y < data[mid].id {
 			right = mid - 1
-		}else if y > data[mid].id{
+		} else {
 			left = mid + 1
-		}else if mid == data[mid].id{
-			idx = mid
 		}
 	}
-	return idx
+	return -1
 }
 
 func ascend_id_insertion(data *tabWisata, nData int )  {
 	for i := 1; i < nData; i++ {
 		j := i
 		for j > 0{
-			if data[j-1].biaya > data[j].biaya{
+			if data[j-1].id > data[j].id{
 				data[j-1], data[j] = data[j], data[j-1]
 			}
 			j = j-1
