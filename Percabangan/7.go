@@ -3,11 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	var a string
-	fmt.Scan(&a)
-	if a == "tinggi" {
-		fmt.Println("macet")
+	var viking, saxon int
+	fmt.Scan(&viking, &saxon)
+	if saxon > viking*4 {
+		fmt.Println("saxon menang")
+	} else if saxon < viking*4 {
+		fmt.Println("viking menang")
 	} else {
-		fmt.Println("tidak macet")
+		fmt.Println("imbang")
 	}
 }

@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	var a string
+    var a string
 	fmt.Scan(&a)
-	if a == "tinggi" {
+	if a == "tinggi"{
 		fmt.Println("macet")
-	} else {
+	}else {
 		fmt.Println("tidak macet")
 	}
 }

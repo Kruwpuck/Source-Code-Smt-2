@@ -51,11 +51,6 @@ func home(A *tData_pasien, B *tLayanan) {
 	var n, m int = 10, 5
 	for opsi != 4 {
 		fmt.Println("===================================================")
-		fmt.Println("||                                               ||")
-		fmt.Println("||       Frizanka Aryaguna || 103032300135       ||")
-		fmt.Println("||     Ihab Hasanain Akmal || 103032330054       ||")
-		fmt.Println("||                                               ||")
-		fmt.Println("===================================================")
 		fmt.Println("Selamat datang Di Layanan Medical Check Up")
 		fmt.Println("Pilih Opsi berikut:")
 		fmt.Println("1. Mengolah Data Pasien")
@@ -596,7 +591,6 @@ func main_tambah_paket(B *tLayanan, m *int)  {
 	fmt.Print("Masukkan Harga Paket: ")
 	fmt.Scan(&B[*m].harga)
 	for B[*m].harga < 0 {
-		fmt.Print("Harga tidak boleh negatif")
 		fmt.Print("Masukkan Harga Paket: ")
 		fmt.Scan(&B[*m].harga)
 	}
