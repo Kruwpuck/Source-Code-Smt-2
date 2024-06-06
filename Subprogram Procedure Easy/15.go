@@ -1,9 +1,11 @@
-// Buatlah fungsi saja
-
-func konversiMeterMil(meter float64) float64 {
-	// fungsi mengembalikan nilai mil dengan masukan meter
-	var mil float64
-	mil = meter * 0.00062137119
-	return mil
-}
-	
+func denda(hari int) {
+	if hari >= 1 && hari <= 5 {
+	hari = hari * 1000
+	fmt.Println(hari)
+	} else if hari >= 6 && hari <= 10 {
+	hari = hari * 2000
+	fmt.Println(hari)
+	} else {
+	fmt.Println("cabut keanggotaan")
+	}
+   }

@@ -1,12 +1,12 @@
-// Buatlah fungsi saja
-
-func jumKendaraan(jumPenumpang, kapKendaraan int) int {
-	/* fungsi mengembalikan jumlah kendaraan yang diperlukan
-	   jika diinputkan jumlah penumpang dan kapasitas kendaraan */
-	if jumPenumpang%kapKendaraan != 0 {
-		return jumPenumpang/kapKendaraan + 1
-	} else {
-		return jumPenumpang / kapKendaraan
+//buatlah prosedur saja
+func hitungJumlah(n int, hasil *int) {
+	/*
+	I.S. Terdefinisi sebuah bilangan bulat N
+	F.S. S berisi nilai hasil penjumlahan dari 1 hingga N
+	*/
+	*hasil = 0
+	for i := 1; i <= n; i++ {
+	*hasil += i
 	}
-
-}
+   }
+   

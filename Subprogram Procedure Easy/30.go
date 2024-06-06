@@ -1,7 +1,7 @@
-// Buatlah fungsi saja
-
-func faktor(n, m int) bool {
-	/* fungsi mengembalikan nilai boolean true, jika bilangan a
-	   adalah faktor dari bilangan b*/
-	return m%n == 0
+func cetakHitungJumlah(N int, jum *int) {
+	*jum = 0
+	for i := 1; i <= N; i++ {
+		fmt.Println(i)
+		*jum += i
+	}
 }

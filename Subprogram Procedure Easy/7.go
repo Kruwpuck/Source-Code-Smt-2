@@ -1,9 +1,18 @@
-// Buatlah fungsi saja
-
-func konversiTemperatur(c float64) float64 {
-	/* fungsi menerima input temperatur celsius dengan tipe real
-	   dan mengembalikan nilai temperatur reamur dengan tipe real */
-	var r float64
-	r = 4.0 / 5.0 * c
-	return r
-}
+func goNoGo(hujanTurun string, bawaPayung string) {
+	/*
+	I.S. terdefinisi dua buah string hujanTurun dan bawaPayung ("ya" atau "tidak").
+	F.S. menampilkan string "berangkat" bila hujan tidak turun atau membawa payung, 
+		 atau menampilkan "diam di rumah" bila sebaliknya.
+	*/
+	
+		if hujanTurun == "ya" && bawaPayung == "ya" {
+	 fmt.Println("berangkat")
+	 } else if hujanTurun == "ya" && bawaPayung == "tidak" {
+	 fmt.Println("diam di rumah")
+	 } else if hujanTurun == "tidak" && bawaPayung == "tidak" {
+	 fmt.Println("berangkat")
+	 } else if hujanTurun == "tidak" && bawaPayung == "ya" {
+	 fmt.Println("berangkat")
+	 }
+	
+	}

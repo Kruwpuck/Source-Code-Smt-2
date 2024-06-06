@@ -1,7 +1,12 @@
-// Buatlah fungsi saja
-
-func posisiBenda(t float64) float64 {
-	var hasil float64
-	hasil = (t * t * t) - (12 * (t * t)) + (36 * t) - 30
-	return hasil
-}
+func cekGenap(bil int) {
+	/*
+	I.S. terdefinisi bilangan bulat positif.
+	F.S. tercetak "Ya" bila bilangan masukan adalah genap atau "Tidak" bila bukan.
+	*/
+	 if bil % 2 == 0 {
+	 fmt.Print("Ya")
+	 } else {
+	 fmt.Print("Tidak")
+	 }
+	}
+	

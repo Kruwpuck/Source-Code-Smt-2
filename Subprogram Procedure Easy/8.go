@@ -1,9 +1,9 @@
-// Buatlah fungsi saja
-
-func konversiTemperatur(c float64) float64 {
-	/* fungsi menerima input temperatur celsius dengan tipe real
-	   dan mengembalikan nilai temperatur fahrenheit dengan tipe real */
-	var f float64
-	f = 9.0/5.0*c + 32
-	return f
-}
+func cetak(n, m int) {
+	/*
+	I.S. terdefinisi dua buah bilangan bulat positif n dan m, dengan n < m
+	F.S. menampilkan barisan bilangan dari n hingga m
+	*/
+		for i :=n ; i <= m; i++ {
+			fmt.Print(i, " ")
+		}
+	}

@@ -1,11 +1,7 @@
-// Buatlah fungsi saja
+//buatlah prosedur saja
 
-func kelilinglingkaran(radius float64) float64 {
-	/*  fungsi menerima input dengan tipe bilangan real
-	    dan mengembalikan nilai keliling lingkaran dengan tipe data real
-	*/
-	const pi float64 = 3.14
-	var hasil float64
-	hasil = 2 * pi * radius
-	return hasil
+func hitungLuas(p, l int, luas *int) {
+    /* I.S.: Terdefinisi panjang (p) dan lebar (l) persegi panjang
+       F.S.: luas berisi hasil perhitungan luas persegi panjang */
+    *luas = p * l
 }

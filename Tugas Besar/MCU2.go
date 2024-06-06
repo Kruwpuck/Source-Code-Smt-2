@@ -33,11 +33,15 @@ func main() {
     }
 	dat_pas = [NMAX]data_pasien{
         {nama: "susilo", id: 12, waktu: periode{tahun: 2021, bulan: 9, tanggal: 13}, jenis: dat_lay[0], rekap: "buta"},
+        {nama: "putri", id: 13, waktu: periode{tahun: 2018, bulan: 8, tanggal: 17}, jenis: dat_lay[0], rekap: "kanker"},
         {nama: "bambang", id: 15, waktu: periode{tahun: 2022, bulan: 12, tanggal: 25}, jenis: dat_lay[1], rekap: "lumpuh"},
+        {nama: "ihab", id: 14, waktu: periode{tahun: 2018, bulan: 8, tanggal: 17}, jenis: dat_lay[1], rekap: "sifilis"},
+        {nama: "hasanain", id: 16, waktu: periode{tahun: 2018, bulan: 8, tanggal: 17}, jenis: dat_lay[2], rekap: "sehat"},
         {nama: "yudhoyono", id: 17, waktu: periode{tahun: 2023, bulan: 3, tanggal: 9}, jenis: dat_lay[2], rekap: "HIV"},
         {nama: "megawati", id: 11, waktu: periode{tahun: 2024, bulan: 10, tanggal: 3}, jenis: dat_lay[3], rekap: "sakit"},
+        {nama: "frizanka", id: 9, waktu: periode{tahun: 2018, bulan: 8, tanggal: 17}, jenis: dat_lay[3], rekap: "demam"},
         {nama: "soekarno", id: 10, waktu: periode{tahun: 2019, bulan: 1, tanggal: 31}, jenis: dat_lay[4], rekap: "kesurupan"},
-        {nama: "putri", id: 13, waktu: periode{tahun: 2018, bulan: 8, tanggal: 17}, jenis: dat_lay[4], rekap: "cacar air"},
+        {nama: "aryaguna", id: 8, waktu: periode{tahun: 2018, bulan: 8, tanggal: 17}, jenis: dat_lay[4], rekap: "cacar air"},
     }
 	home(&dat_pas, &dat_lay)
 }

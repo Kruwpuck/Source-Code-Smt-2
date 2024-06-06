@@ -1,7 +1,9 @@
-// Buatlah fungsi saja
-
-func fx(x float64) float64 {
-	var hasil float64
-	hasil = (((x * x * x) + (3.0 * x)) / (((x * x * x * x) - (3.0 * (x * x))) + 4.0))
-	return hasil
-}
+func cekJenisNode(v byte) {
+	if v == 'A' {
+	fmt.Print("akar")
+	} else if v == 'E' || v == 'B' {
+	fmt.Print("verteks dalam")
+	} else if v == 'C' || v == 'F' || v == 'G' || v == 'D' {
+	fmt.Print("daun")
+	}
+   }

@@ -1,12 +1,11 @@
-// Buatlah fungsi saja
-
-func persamaanGaris(m, c float64) string {
-	/*  Fungsi mengembalikan string berupa "melewati" apabila nilai c sama dengan nol atau
-	"tidak melewati" apabila nilai c tidak sama dengan nol */
-	if m*c == 0 {
-		return "melewati"
-	} else {
-		return "tidak melewati"
+//buatlah prosedur saja
+func hitungJumlah(n int, hasil *int) {
+	/*
+	I.S. Terdefinisi sebuah bilangan bulat N
+	F.S. S berisi nilai hasil penjumlahan dari 1 hingga N
+	*/
+	*hasil = 0
+	for i := 1; i <= n; i++ {
+	*hasil += i
 	}
-
-}
+   }

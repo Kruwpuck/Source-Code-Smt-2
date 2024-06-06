@@ -1,7 +1,11 @@
-// Buatlah fungsi saja
-
-func ganjil(a int) bool {
-	/* fungsi menerima input bilangan bulat dan mengembalikan nilai boolean true
-	jika bilangan genap */
-	return a%2 != 0
-}
+func haveSampoHujan(habisSampo, hujan string) {
+	//Menampilkan pergi atau tidak pergi ke minimarket sesuai dengan ketentuan soal
+	var hasil string
+	if habisSampo == "ya" && hujan == "tidak" {
+	hasil = "pergi ke minimarket"
+	} else {
+	hasil = "tidak pergi ke minimarket"
+	}
+	fmt.Print(hasil)
+   }
+   

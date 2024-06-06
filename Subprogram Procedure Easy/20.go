@@ -1,5 +1,8 @@
-// Buatlah fungsi saja
-
-func penjumlahan(a, b, c, d int) int {
-	return a + b + c + d
+// buat prosedurnya saja
+func lebihKecil(b1, b2 int) {
+	if b1 < b2 {
+	fmt.Print(b1)
+	} else {
+	fmt.Print(b2)
+	}
 }

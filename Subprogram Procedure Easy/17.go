@@ -1,7 +1,8 @@
-// Buatlah fungsi saja
-
-func konversiFeetMeter(feet float64) float64 {
-	var meter float64
-	meter = feet * 0.3048
-	return meter
-}
+func cekFaktor(a, b int) {
+	if b%a == 0 {
+	fmt.Print("Ya, ", a, " faktor ", b)
+	} else {
+	fmt.Print("Tidak, ", a, " bukan faktor ", b)
+	}
+   }
+   

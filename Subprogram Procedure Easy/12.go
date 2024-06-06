@@ -1,6 +1,11 @@
-// Buatlah fungsi saja
-
-func persamaan(x float64) float64 {
-	// fungsi mengembalikan nilai y berdasarkan persamaan y = (3x - 5) (2x + 1)
-	return (x*3 - 5) * (2*x + 1)
+func hadiah(rank int) {
+ /* I.S terdefinisi bilangan bulat r yang menyatakan ranking
+ F.S menampilkan string "mendapat hadiah" jika ranking berada pada 5 besar */
+ if rank >= 1 && rank <= 5 {
+ fmt.Println("mendapat hadiah")
+ } else if rank < 1 {
+ fmt.Println("mendapat hadiah")
+ } else {
+ fmt.Println(" ")
+ }
 }

@@ -1,10 +1,13 @@
-// Buatlah fungsi saja
-
-func volumeKerucut(r, t float64) float64 {
-	/* fungsi menerima input berupa radius dan tinggi dengan tipe data real
-	   dan mengembalikan nilai volume kerucut dengan tipe data real */
-	const pi float64 = 3.14
-	var hasil float64
-	hasil = 1.0 / 3.0 * pi * r * r * t
-	return hasil
-}
+// buatlah prosedurnya saja
+func konsekutifMenaik(b1, b2, b3 int) {
+	/*
+	I.S. terdefinisi tiga buah bilangan bulat.
+	F.S. tercetak "ya" jika konsekutif menaik atau "tidak" jika tidak konsekuti
+	*/
+	if b2-b1 == 1 && b3-b2 == 1 {
+	fmt.Print("ya")
+	} else {
+	fmt.Print("tidak")
+	}
+   }
+   
