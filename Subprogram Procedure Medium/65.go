@@ -1,4 +1,3 @@
-//isi prosedur saja
 func hitungGanjilGenap(banyakGenap, banyakGanjil *int, b1, b2, b3, b4 int) {
     /*I.S. terdefinisi banyakGanjil dan banyakGenap diinisiasi bernilai 0 dan 
     bilangan bulat b1 b2 b3 b4
@@ -7,22 +6,22 @@ func hitungGanjilGenap(banyakGenap, banyakGanjil *int, b1, b2, b3, b4 int) {
     */
     if b1 % 2 == 0 {
         *banyakGenap += 1
-    }else {
+    } else {
         *banyakGanjil += 1
     }
     if b2 % 2 == 0 {
         *banyakGenap += 1
-    }else {
+    } else {
         *banyakGanjil += 1
     }
     if b3 % 2 == 0 {
         *banyakGenap += 1
-    }else {
+    } else {
         *banyakGanjil += 1
     }
     if b4 % 2 == 0 {
         *banyakGenap += 1
-    }else {
+    } else {
         *banyakGanjil += 1
     }
 }

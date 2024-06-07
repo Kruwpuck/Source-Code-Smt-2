@@ -10,4 +10,4 @@ func cetak(n, m int) {
 		for j = n; j >= m; j--{
 			fmt.Print(j, " ")
 		}
-	}
+}

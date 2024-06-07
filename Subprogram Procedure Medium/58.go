@@ -9,7 +9,6 @@ func procedure(){
     */
     var b1, b2, i int
     var stop bool
-    
     stop = i == 10
     fmt.Scan(&b1)
     for !stop{
