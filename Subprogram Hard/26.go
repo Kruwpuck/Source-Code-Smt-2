@@ -6,11 +6,11 @@ func descending(a, b, c int) {
 	if a < b {
 		a, b = b, a
 	}
+	if a < c {
+		a, c = c, a
+	}
 	if b < c {
 		b, c = c, b
-	}
-	if a < b {
-		a, b = b, a
 	}
 
 	// Cetak bilangan yang sudah terurut secara descending

@@ -4,7 +4,6 @@ func cetakTerbesar(b1, b2, b3, b4 int) {
 		F.S mencari dan mencetak bilangan terbesar di antara b1, b2, b3, dan b4.
 	*/
 	terbesar := b1
-
 	if b2 > terbesar {
 		terbesar = b2
 	}
@@ -14,6 +13,5 @@ func cetakTerbesar(b1, b2, b3, b4 int) {
 	if b4 > terbesar {
 		terbesar = b4
 	}
-
 	fmt.Println(terbesar)
 }

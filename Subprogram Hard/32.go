@@ -6,7 +6,6 @@ func cetakdigit(n int) {
 		fmt.Print(n)
 		return
 	}
-
 	// Rekurens: cetak digit pertama, lalu panggil rekursi untuk digit selanjutnya
 	cetakdigit(n / 10)
 	fmt.Print("-", n%10)

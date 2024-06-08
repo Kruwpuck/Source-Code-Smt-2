@@ -6,7 +6,6 @@ func cetakterbalikdigit(n int) {
 		fmt.Print(n)
 		return
 	}
-
 	// Cetak digit terbalik, kemudian panggil rekursi untuk digit selanjutnya
 	fmt.Print(n%10, "-")
 	cetakterbalikdigit(n / 10)
