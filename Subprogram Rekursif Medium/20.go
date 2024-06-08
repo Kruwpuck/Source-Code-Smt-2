@@ -1,7 +1,3 @@
-package main
-
-import "fmt"
-
 func cetakGoLang(i, n int) {
 	if i > n {
 		return
@@ -18,11 +14,4 @@ func cetakGoLang(i, n int) {
 	}
 
 	cetakGoLang(i+1, n)
-}
-
-func main() {
-	var n int
-	fmt.Print("Masukkan bilangan bulat positif N: ")
-	fmt.Scan(&n)
-	cetakGoLang(1, n)
 }
