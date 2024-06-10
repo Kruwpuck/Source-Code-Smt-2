@@ -1,12 +1,31 @@
-func cetakdigit(n int) {
-	/* I.S. Terdefinisi sebuah bilangan bulat n.
-	F.S. Tercetak tiap digit bilangan n diselingi dengan karakter dash (strip). */
-
-	if n < 10 {
-		fmt.Print(n)
-		return
-	}
-	// Rekurens: cetak digit pertama, lalu panggil rekursi untuk digit selanjutnya
-	cetakdigit(n / 10)
-	fmt.Print("-", n%10)
+func cekHuruf(kata string) {
+    /*
+    IS : Terdefinisi suatu kata bertipe string
+    FS : Menampilkan hasil apakah kata tersebut memiliki huruf vokal diawal atau diakhir.
+    */
+    fmt.Scanln(&kata)
+    
+    aAwal := string(kata[0]) == "a"
+    iAwal := string(kata[0]) == "i"
+    uAwal := string(kata[0]) == "u"
+    eAwal := string(kata[0]) == "e"
+    oAwal := string(kata[0]) == "o"
+    vokalAwal := aAwal || iAwal|| uAwal || eAwal|| oAwal
+    
+    aAkhir := string(kata[len(kata) -1]) == "a"
+    iAkhir := string(kata[len(kata) -1]) == "i"
+    uAkhir := string(kata[len(kata) -1]) == "u"
+    eAkhir := string(kata[len(kata) -1]) == "e"
+    oAkhir := string(kata[len(kata) -1]) == "o"
+    vokalAkhir := aAkhir || iAkhir || uAkhir|| eAkhir || oAkhir
+    
+    if vokalAwal && vokalAkhir {
+        fmt.Println("vokal di awal dan di akhir")
+    }else if vokalAwal{
+        fmt.Println("vokal di awal")
+    }else if vokalAkhir{
+        fmt.Println("vokal di akhir")
+    }else{
+        fmt.Println("tidak ada vokal")
+    }
 }
