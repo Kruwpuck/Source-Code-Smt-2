@@ -1,25 +1,25 @@
-func secMax(max, secondMax *int) {
-	/* I.S. terdefinisi bilangan terbesar max, bilangan terbesar kedua secondMax.
-	   dan inputan barisan bilangan bulat yang berakhir jika bilangan bulat sama dengan 0
-	   F.S. max adalah bilangan bulat terbesar dan secondMax adalah bilangan bulat terbesar kedua */
+type arrOfInt [N]int
 
-	var num, first, second int
-	first = *max
-	second = *secondMax
+const N int = 1000
 
-	for {
-		fmt.Scan(&num)
-		if num == 0 {
-			break
-		}
-		if num > first {
-			second = first
-			first = num
-		} else if num > second {
-			second = num
-		}
-	}
+func isPrima(num int) bool {
+    if num <= 1 {
+        return false
+    }
+    for i := 2; i*i <= num; i++ {
+        if num%i == 0 {
+            return false
+        }
+    }
+    return true
+}
 
-	*max = first
-	*secondMax = second
+func prima(T arrOfInt, total int, length *int, P *arrOfInt) {
+    *length = -1
+    for i := 0; i < total; i++ {
+        if isPrima(T[i]) {
+            *length++
+            (*P)[*length] = T[i]
+        }
+    }
 }
