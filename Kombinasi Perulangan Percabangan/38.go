@@ -1,16 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	var total, x float64
-	for i := 0; i < 6; i++ {
-		fmt.Scan(&x)
-		total += x
+	var x, y, z int
+
+	fmt.Scan(&x, &y, &z)
+
+	totalPertemuan := hitungPertemuan(x, y, z)
+	fmt.Println(totalPertemuan)
+}
+
+func hitungPertemuan(x, y, z int) int {
+	jumlahHari := 365
+	pertemuan := 0
+
+	for hari := 1; hari <= jumlahHari; hari++ {
+		if hari%x == 0 && hari%y == 0 && hari%z == 0 {
+			pertemuan++
+		}
 	}
-	if total/6 >= 3.33 {
-		fmt.Print("mendapat sertifikat")
-	} else {
-		fmt.Print("tidak mendapat sertifikat")
-	}
+
+	return pertemuan
 }

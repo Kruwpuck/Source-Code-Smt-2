@@ -1,23 +1,39 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	var a, b, c int
-	fmt.Scan(&a, &b, &c)
-	if a <= b && b <= c {
-		fmt.Print(a, b, c)
-	} else if b <= a && a <= c {
-		fmt.Print(b, a, c)
-	} else if a <= c && c <= b {
-		fmt.Print(a, c, b)
-	} else if b <= c && c <= a {
-		fmt.Print(b, c, a)
-	} else if c <= a && a <= b {
-		fmt.Print(c, a, b)
-	} else if c <= b && b <= a {
-		fmt.Print(c, b, a)
-	} else {
-		fmt.Print()
+	var totalPoin int
+	var pertanyaanTerjawab int
+
+	for {
+		var jawaban string
+		fmt.Scanln(&jawaban)
+
+		if len(jawaban) != 3 {
+			continue
+		}
+
+		// Menghentikan jika semua jawaban adalah 'T'
+		if jawaban == "TTT" {
+			break
+		}
+
+		// Menghitung poin
+		for _, j := range jawaban {
+			if j == 'O' {
+				totalPoin++
+				break
+			}
+		}
+
+		pertanyaanTerjawab++
+		if pertanyaanTerjawab == 10 {
+			break
+		}
 	}
+
+	fmt.Printf("Poin = %d\n", totalPoin)
 }

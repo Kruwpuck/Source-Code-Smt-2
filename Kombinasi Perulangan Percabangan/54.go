@@ -3,11 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	var a, b, c float64
-	fmt.Scan(&a, &b, &c)
-	if b/a == c/b {
-		fmt.Print("ya")
-	} else {
-		fmt.Print("tidak")
-	}
+    var n int
+    fmt.Scan(&n)
+
+    sum := 0
+    for i := 2; i <= n*2; i += 2 {
+        sum += i
+    }
+
+    fmt.Println(sum)
 }

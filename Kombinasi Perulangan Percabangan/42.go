@@ -3,11 +3,18 @@ package main
 import "fmt"
 
 func main() {
-	var a, b, c int
-	fmt.Scan(&a, &b, &c)
-	if c-b == 1 && b-a == 1 {
-		fmt.Print("ya")
-	} else {
-		fmt.Println("tidak")
-	}
+    var input string
+    fmt.Scan(&input)
+
+    var found bool
+
+    // Periksa apakah huruf 'k' atau 'q' ada dalam input
+    for _, char := range input {
+        if char == 'k' || char == 'q' {
+            found = true
+            break
+        }
+    }
+
+    fmt.Println(found)
 }

@@ -3,12 +3,16 @@ package main
 import "fmt"
 
 func main() {
-	var a float64
-	fmt.Scan(&a)
-	if a > 0 {
-		fmt.Println("terbuka ke atas")
-	} else {
-		fmt.Println("terbuka ke bawah")
+	var x, y int
+	fmt.Scanln(&x, &y)
 
+	// Menghitung jumlah hari pertemuan yang merupakan kelipatan x tapi bukan kelipatan y
+	totalMeetings := 0
+	for day := 1; day <= 365; day++ {
+		if day%x == 0 && day%y != 0 {
+			totalMeetings++
+		}
 	}
+
+	fmt.Println(totalMeetings)
 }

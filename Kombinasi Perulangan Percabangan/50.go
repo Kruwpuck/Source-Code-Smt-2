@@ -1,15 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	var a, b int
-	fmt.Scan(&a, &b)
-	if a%2 == 0 && b%2 == 0 {
-		fmt.Print(a * b)
-	} else if a%2 != 0 && b%2 != 0 {
-		fmt.Print(a + b)
-	} else {
-		fmt.Print(0)
+	var num, sum int
+	// Loop while-like using for in Go
+	for {
+		fmt.Scan(&num)
+		if num < 0 {
+			break
+		}
+		if num%4 == 0 && num%2 == 0 {
+			sum += num
+		}
 	}
+
+	fmt.Print(sum)
 }

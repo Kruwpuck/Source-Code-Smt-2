@@ -3,13 +3,28 @@ package main
 import "fmt"
 
 func main() {
-	var a, b int
-	fmt.Scan(&a, &b)
-	if a > b {
-		fmt.Println("menang")
-	} else if a < b {
-		fmt.Println("kalah")
-	} else {
-		fmt.Println("draw")
-	}
+    var rounds int
+    fmt.Scan(&rounds)
+
+    var totalA, totalB, totalC int
+    for i := 0; i < rounds; i++ {
+        var a, b, c int
+        fmt.Scan(&a, &b, &c)
+        totalA += a
+        totalB += b
+        totalC += c
+    }
+
+    winner := 'A'
+    maxTotal := totalA
+    if totalB > maxTotal {
+        winner = 'B'
+        maxTotal = totalB
+    }
+    if totalC > maxTotal {
+        winner = 'C'
+        maxTotal = totalC
+    }
+
+    fmt.Printf("%c %d\n", winner, maxTotal)
 }

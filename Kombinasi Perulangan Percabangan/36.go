@@ -3,13 +3,17 @@ package main
 import "fmt"
 
 func main() {
-	var x int
-	fmt.Scan(&x)
-	if x <= 5 {
-		fmt.Print(x * 1000)
-	} else if x > 5 && x <= 10 {
-		fmt.Print(x * 2000)
-	} else {
-		fmt.Print("cabut keanggotaan")
-	}
+    var dadu1, dadu2, countTidakSama int
+    for {
+   
+        fmt.Scan(&dadu1, &dadu2)
+        
+        if (dadu1%2 == 0 && dadu2%2 != 0) || (dadu1%2 != 0 && dadu2%2 == 0) {
+            countTidakSama++
+        } else if (dadu1%2 == 0 && dadu2%2 == 0) || (dadu1%2 != 0 && dadu2%2 != 0) {
+            break // Berhenti jika muncul angka dadu sama-sama genap atau sama-sama ganjil
+        }
+    }
+
+    fmt.Print(countTidakSama)
 }

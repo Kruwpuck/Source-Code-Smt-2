@@ -1,16 +1,19 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
 func main() {
-	var a, b, c float64
-	fmt.Scan(&a, &b, &c)
-	if math.Pow(a, b) == c {
-		fmt.Println("benar")
-	} else {
-		fmt.Println("salah")
-	}
+    var dadu1, dadu2, countGanjil int
+    for {
+
+        fmt.Scan(&dadu1, &dadu2)
+        
+        if dadu1%2 == 1 && dadu2%2 == 1 {
+            countGanjil++
+        } else if dadu1%2 == 0 && dadu2%2 == 0 {
+            break // Berhenti jika muncul angka dadu sama-sama genap
+        }
+    }
+
+    fmt.Print(countGanjil)
 }

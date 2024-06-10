@@ -1,15 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	var i string
-	fmt.Scan(&i)
-	if i == "B" || i == "E" {
-		fmt.Print("verteks dalam")
-	} else if i == "A" {
-		fmt.Print("akar")
-	} else {
-		fmt.Print("daun")
+	var num, sum int
+
+	for {
+		fmt.Scan(&num)
+		if num < 0 {
+			break
+		}
+		if num%3 == 0 && num%2 != 0 {
+			sum += num
+		}
 	}
+
+	fmt.Printf("%d\n", sum)
 }

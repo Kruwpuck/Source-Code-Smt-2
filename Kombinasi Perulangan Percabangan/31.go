@@ -3,17 +3,43 @@ package main
 import "fmt"
 
 func main() {
-	var input, hasil, hasil2 string
-	fmt.Scan(&input)
-	hasil = string(input[0])
-	hasil2 = string(input[len(input)-1])
-	if (hasil == "a" || hasil == "i" || hasil == "u" || hasil == "e" || hasil == "o") && (hasil2 == "a" || hasil2 == "i" || hasil2 == "u" || hasil2 == "e" || hasil2 == "o") {
-		fmt.Print("vokal di awal dan di akhir")
-	} else if hasil2 == "a" || hasil2 == "i" || hasil2 == "u" || hasil2 == "e" || hasil2 == "o" {
-		fmt.Print("vokal di akhir")
-	} else if hasil == "a" || hasil == "i" || hasil == "u" || hasil == "e" || hasil == "o" {
-		fmt.Print("vokal di awal")
-	} else {
-		fmt.Print("tidak ada vokal")
+	var rounds int
+	fmt.Scan(&rounds)
+
+	var totalA, totalB, totalC int
+	for i := 0; i < rounds; i++ {
+		var a, b, c, evenA, evenB, evenC int
+		fmt.Scan(&a, &b, &c)
+		evenA = countEven(a)
+		evenB = countEven(b)
+		evenC = countEven(c)
+		totalA += evenA
+		totalB += evenB
+		totalC += evenC
 	}
+
+	winner := 'A'
+	maxTotal := totalA
+	if totalB > maxTotal {
+		winner = 'B'
+		maxTotal = totalB
+	}
+	if totalC > maxTotal {
+		winner = 'C'
+		maxTotal = totalC
+	}
+
+	fmt.Printf("%c %d\n", winner, maxTotal)
+}
+
+func countEven(num int) int {
+	count := 0
+	for num > 0 {
+		digit := num % 10
+		if digit%2 == 0 {
+			count += digit
+		}
+		num /= 10
+	}
+	return count
 }

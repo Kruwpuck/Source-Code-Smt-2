@@ -2,18 +2,25 @@ package main
 
 import "fmt"
 
+func isConsonant(char byte) bool {
+	switch char {
+	case 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U', '.':
+		return false
+	default:
+		return true
+	}
+}
+
 func main() {
-	var a string
-	var lolos int
-	for i := 0; i < 3; i++ {
-		fmt.Scan(&a)
-		if a == "yes" {
-			lolos++
+	var input string
+	fmt.Scanln(&input)
+
+	count := 0
+	for i := 0; i < len(input); i++ {
+		if isConsonant(input[i]) {
+			count++
 		}
 	}
-	if lolos >= 2 {
-		fmt.Println("lolos")
-	} else {
-		fmt.Println("tidak lolos")
-	}
+
+	fmt.Println(count)
 }

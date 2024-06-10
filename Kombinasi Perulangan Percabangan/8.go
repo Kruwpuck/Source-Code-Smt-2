@@ -1,20 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+func isPrimeX(n int) bool {
+	factors := 0
+	for i := 1; i <= n; i++ {
+		if n%i == 0 {
+			factors++
+		}
+		if factors > 3 {
+			return false
+		}
+	}
+	return factors == 3
+}
 
 func main() {
-	var a int
-	var hasil bool = true
-	fmt.Scan(&a)
-	if a == 1 || a == 2 {
-		fmt.Print(false)
-	} else {
-		for i := 2; i <= a-1; i++ {
-			if a%i == 0 {
-				hasil = false
-			}
-		}
-		fmt.Print(!hasil)
-	}
+	var num int
 
+	fmt.Scan(&num)
+	fmt.Println(isPrimeX(num))
 }

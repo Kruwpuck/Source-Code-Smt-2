@@ -3,11 +3,20 @@ package main
 import "fmt"
 
 func main() {
-	var a, b, c, d int
-	fmt.Scan(&a, &b, &c, &d)
-	if a+b+c == d {
-		fmt.Println("benar")
-	} else {
-		fmt.Println("salah")
+	totalOdd := 0
+
+	for {
+		var d1, d2, d3 int
+		fmt.Scanln(&d1, &d2, &d3)
+
+		if d1+d2+d3 == 10 {
+			break
+		}
+
+		if d1%2 != 0 && d2%2 != 0 && d3%2 != 0 {
+			totalOdd++
+		}
 	}
+
+	fmt.Println(totalOdd)
 }

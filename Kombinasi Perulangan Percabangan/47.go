@@ -1,15 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	var a, b, c int
-	fmt.Scan(&a, &b, &c)
-	if a > b && a > c {
-		fmt.Print(a)
-	} else if b > a && b > c {
-		fmt.Print(b)
-	} else {
-		fmt.Print(c)
+	var n int
+	var buah string
+	var countApel, countJeruk, countMangga int
+	fmt.Scanln(&n)
+
+	for i := 0; i < n; i++ {
+		fmt.Scanln(&buah)
+		switch buah {
+		case "apel":
+			countApel++
+		case "jeruk":
+			countJeruk++
+		case "mangga":
+			countMangga++
+		}
 	}
+
+	fmt.Print(countApel, " ")
+	fmt.Print(countJeruk, " ")
+	fmt.Print(countMangga, " ")
 }

@@ -3,13 +3,31 @@ package main
 import "fmt"
 
 func main() {
-	var a, b, c int
-	fmt.Scan(&a, &b, &c)
-	if a%2 == 0 && b%2 == 0 && c%2 == 0 {
-		fmt.Print("genap")
-	} else if a%2 != 0 && b%2 != 0 && c%2 != 0 {
-		fmt.Print("ganjil")
-	} else {
-		fmt.Print("bukan ganjil atau genap")
-	}
+    var num int
+
+    // Inisialisasi terbesar dan terkecil dengan nilai dari input pertama yang valid
+    fmt.Scan(&num)
+    if num == 0 {
+        fmt.Println("Tidak ada bilangan yang dimasukkan.")
+        return
+    }
+
+    terbesar := num
+    terkecil := num
+
+    for {
+        fmt.Scan(&num)
+        if num == 0 {
+            break
+        }
+        if num > terbesar {
+            terbesar = num
+        }
+        if num < terkecil {
+            terkecil = num
+        }
+    }
+
+    fmt.Print(terbesar, " ")
+    fmt.Print(terkecil, " ")
 }

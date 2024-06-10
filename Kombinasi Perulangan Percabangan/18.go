@@ -3,19 +3,16 @@ package main
 import "fmt"
 
 func main() {
-	var input string
-	var hasil bool
-	fmt.Scan(&input)
-	hasil = input == "ya"
-	if hasil {
-		fmt.Scan(&input)
-		hasil = input == "ya"
-		if hasil {
-			fmt.Println("tidak pergi ke minimarket")
-		} else {
-			fmt.Println("pergi ke minimarket")
+	var x, y int
+	fmt.Scanln(&x, &y)
+
+	// Menghitung jumlah hari pertemuan yang merupakan kelipatan x dan kelipatan y
+	totalMeetings := 0
+	for day := 1; day <= 365; day++ {
+		if day%x == 0 && day%y == 0 {
+			totalMeetings++
 		}
-	} else {
-		fmt.Println("tidak pergi ke minimarket")
 	}
+
+	fmt.Println(totalMeetings)
 }

@@ -1,17 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	var a, b int
-	fmt.Scan(&a, &b)
-	if b > 0 && a > 0 {
-		fmt.Print(1)
-	} else if b < 0 && a < 0 {
-		fmt.Print(3)
-	} else if b > 0 && a < 0 {
-		fmt.Print(2)
-	} else {
-		fmt.Print(4)
+	var input string
+	fmt.Scanln(&input)
+
+	sum := 0
+	for _, char := range input {
+		if char >= '0' && char <= '9' {
+			num := int(char - '0')
+			sum += num
+		}
 	}
+
+	fmt.Println(sum)
 }

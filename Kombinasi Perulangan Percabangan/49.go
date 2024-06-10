@@ -1,13 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	var hasil string
-	fmt.Scan(&hasil)
-	if hasil == "a" || hasil == "i" || hasil == "u" || hasil == "e" || hasil == "o" || hasil == "A" || hasil == "I" || hasil == "U" || hasil == "E" || hasil == "O" {
-		fmt.Print("vokal")
-	} else {
-		fmt.Print("konsonan")
+	var n, m int
+	fmt.Scan(&n)
+
+	fmt.Scan(&m)
+
+	result := 0
+	for i := 0; i < n; i++ {
+		result += m
 	}
+
+	fmt.Print(result)
 }

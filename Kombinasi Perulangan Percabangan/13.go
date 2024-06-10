@@ -3,17 +3,22 @@ package main
 import "fmt"
 
 func main() {
-	var rata, total, input float64
-	for i := 0; i < 4; i++ {
-		fmt.Scan(&input)
-		total += input
+	var input string
+	fmt.Scanln(&input)
+
+	countA := 0
+	countI := 0
+
+	for i := 0; i < len(input); i++ {
+		if input[i] == 'a' || input[i] == 'A' {
+			countA++
+		} else if input[i] == 'i' || input[i] == 'I' {
+			countI++
+		} else if input[i] == '.' {
+			break
+		}
 	}
-	rata = total / 4
-	if rata >= 3.50 {
-		fmt.Print("bagus")
-	} else if rata <= 1.50 {
-		fmt.Print("kurang")
-	} else if rata > 1.50 && rata < 3.50 {
-		fmt.Print("sedang")
-	}
+
+	totalCount := countA + countI
+	fmt.Println(totalCount)
 }

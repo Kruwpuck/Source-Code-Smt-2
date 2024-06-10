@@ -1,20 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	var a, b int
-	for i := 0; i < 5; i++ {
-		fmt.Scan(&a)
-		if a%2 != 0 {
-			b++
+	var x, y, z int
+
+	fmt.Scan(&x, &y, &z)
+
+	totalPertemuan := hitungPertemuan(x, y, z)
+	fmt.Println(totalPertemuan)
+}
+
+func hitungPertemuan(x, y, z int) int {
+	jumlahHari := 365
+	pertemuan := 0
+
+	for hari := 1; hari <= jumlahHari; hari++ {
+		if hari%x == 0 && hari%y == 0 && hari%z != 0 {
+			pertemuan++
 		}
 	}
-	if b == 5 {
-		fmt.Print("ganjil semua")
-	} else if b > 0 {
-		fmt.Print("ganjil sebagian")
-	} else {
-		fmt.Print("tidak ada bilangan ganjil")
-	}
+
+	return pertemuan
 }

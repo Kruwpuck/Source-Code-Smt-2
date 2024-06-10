@@ -3,21 +3,24 @@ package main
 import "fmt"
 
 func main() {
-	var jam, bayar int
-	var kend string
-	fmt.Scan(&kend, &jam)
-	if kend == "motor" {
-		if jam > 1 {
-			bayar = 2000 + ((jam - 1) * 500)
-		} else {
-			bayar = 2000
-		}
-	} else {
-		if jam > 1 {
-			bayar = 3000 + ((jam - 1) * 1000)
-		} else {
-			bayar = 3000
-		}
-	}
-	fmt.Println(bayar)
+    totalOdd := 0
+    totalEven := 0
+
+    for {
+        var d1, d2, d3 int
+        fmt.Scanln(&d1, &d2, &d3)
+
+        sum := d1 + d2 + d3
+        if sum > 15 {
+            break
+        }
+
+        if d1%2 == 0 && d2%2 == 0 && d3%2 == 0 {
+            totalEven++
+        } else if d1%2 != 0 && d2%2 != 0 && d3%2 != 0 {
+            totalOdd++
+        }
+    }
+
+    fmt.Println(totalOdd+totalEven)
 }

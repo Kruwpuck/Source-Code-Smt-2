@@ -1,15 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	var a, d1, d4 int
-	fmt.Scan(&a)
-	d1 = a / 1000
-	d4 = a % 10
-	if d1%2 != 0 && d4%2 == 0 {
-		fmt.Print(1)
+	var jenis string
+	var n, m int
+	fmt.Scan(&jenis, &n, &m)
+
+	if jenis == "ganjil" {
+		for i := n; i <= m; i++ {
+			if i%2 != 0 {
+				fmt.Print(i, " ")
+			}
+		}
+	} else if jenis == "genap" {
+		for i := n; i <= m; i++ {
+			if i%2 == 0 {
+				fmt.Print(i, " ")
+			}
+		}
 	} else {
-		fmt.Print(0)
+		fmt.Println("Input tidak valid. Masukkan 'ganjil' atau 'genap'.")
 	}
 }

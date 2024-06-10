@@ -3,12 +3,18 @@ package main
 import "fmt"
 
 func main() {
-	var a, b, c, d float64
-	fmt.Scan(&a, &b, &c)
-	d = (b * b) - (4 * a * c)
-	if d >= 0.0 {
-		fmt.Println("memiliki titik potong dengan sumbu-x")
-	} else {
-		fmt.Println("tidak memiliki titik potong dengan sumbu-x")
+	var x, y, z, total, persen int
+	fmt.Scan(&x, &y, &z)
+	i := 1
+	for i <= z {
+		if i == 2 {
+			total += x
+			persen = total
+		} else if i%2 == 0 || i%3 == 0 {
+			total += persen + y
+			persen = persen + y
+		}
+		i += 1
 	}
+	fmt.Println(total)
 }
